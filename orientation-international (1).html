@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Études à l'étranger — Autres pays — Cours Tocqueville</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bx:#6B1A2A; --bx-dk:#4A1020; --bx-lt:#8C2A3E;
+      --ivoire:#F7F3ED; --ivoire-dk:#EDE7DE;
+      --anthracite:#1C1C1C; --gris:#6B6B6B; --gris-cl:#D4CEC6;
+      --blanc:#FFFFFF; --t:0.3s ease;
+      --f-head:"Cormorant Garamond",Georgia,serif;
+      --f-body:"DM Sans",sans-serif;
+      --left-nav-w:280px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--ivoire);font-family:var(--f-body);font-size:16px;overflow-x:hidden;color:var(--anthracite);}
+
+    .back-bar{background:var(--anthracite);padding:0 48px;height:40px;display:flex;align-items:center;justify-content:space-between;}
+    .back-link{font-family:var(--f-body);font-size:0.68rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color var(--t);}
+    .back-link:hover{color:var(--blanc);}
+    .back-bar-right{display:flex;gap:24px;}
+    .back-bar-right a{font-family:var(--f-body);font-size:0.65rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color var(--t);}
+    .back-bar-right a:hover{color:var(--blanc);}
+
+    .product-header{background:var(--bx);padding:56px 48px 52px;position:relative;overflow:hidden;}
+    .product-header::before{content:"AILLEURS";position:absolute;right:-20px;bottom:-40px;font-family:var(--f-head);font-size:8rem;font-weight:700;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;letter-spacing:-0.02em;}
+    .product-header-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;gap:48px;}
+    .product-logo-link{display:inline-block;margin-bottom:20px;}
+    .product-logo{height:52px;width:auto;filter:brightness(0) invert(1);opacity:0.9;}
+    .product-title{font-family:var(--f-head);font-size:clamp(2.4rem,4vw,3.6rem);font-weight:300;color:var(--blanc);line-height:1.08;margin-bottom:16px;}
+    .product-title em{font-style:italic;font-weight:400;}
+    .product-subtitle{font-family:var(--f-body);font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.75;max-width:580px;}
+    .product-header-cta{display:flex;flex-direction:column;gap:12px;flex-shrink:0;}
+    .btn-header-cta{display:inline-block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;text-align:center;padding:13px 22px;transition:background var(--t);white-space:nowrap;}
+    .btn-header-cta:hover{background:var(--ivoire);}
+    .btn-header-outline{background:transparent;border:1px solid rgba(255,255,255,0.35);color:rgba(255,255,255,0.8);}
+    .btn-header-outline:hover{background:rgba(255,255,255,0.08);color:var(--blanc);}
+
+    .mobile-menu-bar{display:none;background:var(--anthracite);border-bottom:1px solid rgba(255,255,255,0.08);position:sticky;top:0;z-index:90;}
+    .mobile-menu-btn{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;cursor:pointer;padding:14px 20px;font-family:var(--f-body);font-size:0.85rem;font-weight:400;color:rgba(255,255,255,0.75);}
+    .mobile-menu-btn-left{display:flex;align-items:center;gap:10px;}
+    .mmb-chevron{font-size:0.65rem;color:rgba(255,255,255,0.35);transition:transform var(--t);}
+    .mobile-menu-btn.open .mmb-chevron{transform:rotate(180deg);}
+
+    .mobile-nav-drawer{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--anthracite);z-index:200;overflow-y:auto;transform:translateX(-100%);transition:transform 0.3s ease;}
+    .mobile-nav-drawer.open{transform:translateX(0);}
+    .mnd-header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .mnd-header-title{font-family:var(--f-body);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+    .mnd-close{background:none;border:none;cursor:pointer;font-family:var(--f-body);font-size:0.75rem;color:rgba(255,255,255,0.5);}
+    .mnd-body{padding:24px 20px;}
+    .mnd-section{margin-bottom:28px;}
+    .mnd-section-title{display:block;font-family:var(--f-body);font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:10px;}
+    .mnd-link{display:block;font-family:var(--f-body);font-size:1rem;font-weight:300;color:rgba(255,255,255,0.65);text-decoration:none;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);transition:color var(--t);}
+    .mnd-link:hover,.mnd-link.active{color:var(--blanc);}
+    .mnd-link-sub{display:block;font-family:var(--f-body);font-size:0.88rem;font-weight:300;color:rgba(255,255,255,0.45);text-decoration:none;padding:6px 0 6px 14px;border-bottom:1px solid rgba(255,255,255,0.03);transition:color var(--t);}
+    .mnd-link-sub:hover{color:rgba(255,255,255,0.75);}
+    .mnd-cta-box{background:var(--bx);padding:20px;margin-top:8px;}
+    .mnd-cta-box p{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:14px;}
+    .mnd-cta-btn{display:block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.75rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;padding:11px 16px;text-align:center;margin-bottom:10px;}
+    .mnd-tel{display:block;font-family:var(--f-head);font-size:1rem;color:rgba(255,255,255,0.6);text-decoration:none;text-align:center;}
+
+    .page-body{display:grid;grid-template-columns:var(--left-nav-w) 1fr;max-width:1280px;margin:0 auto;min-height:calc(100vh - 40px - 164px);}
+
+    .left-nav{position:sticky;top:0;height:100vh;overflow-y:hidden;background:var(--anthracite);padding:40px 0;}
+    .left-nav-section{margin-bottom:24px;}
+    .left-nav-title{display:block;font-family:var(--f-body);font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:0 28px;margin-bottom:8px;}
+    .left-nav a{display:block;font-family:var(--f-body);font-size:0.88rem;font-weight:300;color:rgba(255,255,255,0.55);text-decoration:none;padding:9px 28px;border-left:3px solid transparent;transition:all var(--t);}
+    .left-nav a:hover{color:var(--blanc);background:rgba(255,255,255,0.03);}
+    .left-nav a.active{color:var(--blanc);border-left-color:var(--bx);background:rgba(255,255,255,0.04);}
+    .left-nav a.sub{font-size:0.82rem;padding:7px 28px 7px 36px;color:rgba(255,255,255,0.4);}
+    .left-nav a.sub:hover,.left-nav a.sub.active{color:rgba(255,255,255,0.85);}
+    .left-nav-sep{height:1px;background:rgba(255,255,255,0.07);margin:16px 28px;}
+    .left-nav-cta{margin:24px 20px 0;background:var(--bx);padding:20px;}
+    .left-nav-cta p{font-family:var(--f-body);font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.6;margin-bottom:14px;}
+    .left-nav-cta a{display:block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.72rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;padding:10px 14px;text-align:center;margin-bottom:10px;border:none;transition:background var(--t);}
+    .left-nav-cta a:hover{background:var(--ivoire);border-left:none;}
+    .left-nav-tel{display:block;font-family:var(--f-head);font-size:1rem;color:rgba(255,255,255,0.55)!important;text-decoration:none;text-align:center;padding:0!important;border:none!important;background:none!important;}
+
+    .content{padding:0;}
+    .content-section{padding:56px 64px;border-bottom:1px solid var(--gris-cl);}
+    .content-section:last-child{border-bottom:none;}
+    .section-label{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+    .section-label .pipe{width:3px;height:18px;background:var(--bx);flex-shrink:0;}
+    .section-label span{font-family:var(--f-body);font-size:0.65rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bx);}
+    .content-section h2{font-family:var(--f-head);font-size:clamp(1.8rem,2.4vw,2.5rem);font-weight:300;line-height:1.15;color:var(--anthracite);margin-bottom:24px;}
+    .content-section h2 em{font-style:italic;font-weight:400;color:var(--bx);}
+    .content-section p{font-family:var(--f-body);font-size:0.9rem;font-weight:300;color:var(--gris);line-height:1.85;margin-bottom:14px;max-width:680px;}
+    .content-section p strong{font-weight:500;color:var(--anthracite);}
+    .content-section p a{color:var(--bx);text-decoration:none;border-bottom:1px solid rgba(107,26,42,0.25);transition:border-color var(--t);}
+    .content-section p a:hover{border-bottom-color:var(--bx);}
+
+    /* Destination cards */
+    .dest-block{margin-bottom:48px;}
+    .dest-block:last-of-type{margin-bottom:0;}
+    .dest-header{display:flex;align-items:baseline;gap:16px;margin-bottom:16px;}
+    .dest-flag{font-size:1.5rem;line-height:1;}
+    .dest-title{font-family:var(--f-head);font-size:1.5rem;font-weight:400;color:var(--anthracite);}
+    .dest-title em{font-style:italic;color:var(--bx);}
+    .dest-body{font-family:var(--f-body);font-size:0.9rem;font-weight:300;color:var(--gris);line-height:1.85;max-width:680px;margin-bottom:10px;}
+    .dest-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-body);font-size:0.78rem;font-weight:400;color:var(--bx);text-decoration:none;border-bottom:1px solid rgba(107,26,42,0.3);padding-bottom:1px;transition:border-color var(--t);}
+    .dest-link:hover{border-bottom-color:var(--bx);}
+    .dest-sep{height:1px;background:var(--gris-cl);margin:36px 0;max-width:680px;}
+
+    .conseil-box{background:var(--ivoire-dk);border-left:3px solid var(--bx);padding:18px 22px;margin:24px 0;max-width:680px;}
+    .conseil-box p{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:var(--anthracite);line-height:1.7;margin:0;}
+    .conseil-box p strong{font-weight:500;}
+
+    .contact-grid{display:grid;grid-template-columns:1fr 280px;gap:48px;margin-top:8px;}
+    .contact-intro{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:var(--gris);line-height:1.7;margin-bottom:24px;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+    .fg label{font-family:var(--f-body);font-size:0.72rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--anthracite);}
+    .fg input,.fg select,.fg textarea{font-family:var(--f-body);font-size:0.9rem;font-weight:300;border:1px solid var(--gris-cl);background:var(--blanc);padding:10px 14px;color:var(--anthracite);transition:border-color var(--t);outline:none;}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--bx);}
+    .fg textarea{min-height:110px;resize:vertical;}
+    .btn-submit{background:var(--bx);color:var(--blanc);font-family:var(--f-body);font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;padding:14px 28px;transition:background var(--t);width:100%;}
+    .btn-submit:hover{background:var(--bx-lt);}
+    .form-legal{font-family:var(--f-body);font-size:0.72rem;font-weight:300;color:var(--gris);line-height:1.6;margin-top:12px;}
+    .contact-aside{padding-top:8px;}
+    .contact-tel-block{display:flex;gap:16px;align-items:flex-start;background:var(--ivoire-dk);padding:20px;margin-bottom:20px;}
+    .contact-tel-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
+    .contact-tel-label{display:block;font-family:var(--f-body);font-size:0.65rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gris);margin-bottom:4px;}
+    .contact-tel-num{display:block;font-family:var(--f-head);font-size:1.3rem;font-weight:300;color:var(--bx);text-decoration:none;border:none!important;}
+    .contact-addr{font-family:var(--f-body);font-size:0.82rem;font-weight:300;color:var(--gris);line-height:1.8;}
+    .contact-addr strong{display:block;font-weight:500;color:var(--anthracite);margin-bottom:4px;}
+
+    .fi{opacity:0;transform:translateY(18px);transition:opacity 0.55s ease,transform 0.55s ease;}
+    .fi.v{opacity:1;transform:translateY(0);}
+
+    .sticky-mobile{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;grid-template-columns:1fr 1fr;}
+    .sm-call{background:var(--anthracite);color:var(--blanc);font-family:var(--f-body);font-size:0.8rem;font-weight:400;text-decoration:none;padding:16px;text-align:center;letter-spacing:0.04em;}
+    .sm-form{background:var(--bx);color:var(--blanc);font-family:var(--f-body);font-size:0.8rem;font-weight:400;text-decoration:none;padding:16px;text-align:center;letter-spacing:0.04em;}
+
+    @media(max-width:960px){
+      .back-bar{padding:0 20px;}
+      .back-bar-right{display:none;}
+      .product-header{padding:36px 20px 32px;}
+      .product-header-inner{grid-template-columns:1fr;gap:24px;}
+      .product-header-cta{flex-direction:row;flex-wrap:wrap;}
+      .page-body{grid-template-columns:1fr;}
+      .left-nav{display:none;}
+      .mobile-menu-bar{display:block;}
+      .mobile-nav-drawer{display:block;}
+      .content-section{padding:40px 24px;}
+      .contact-grid{grid-template-columns:1fr;}
+      .form-row{grid-template-columns:1fr;}
+      .sticky-mobile{display:grid;}
+      body{padding-bottom:56px;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="back-bar">
+    <a href="index.html" class="back-link">← Cours Tocqueville</a>
+    <div class="back-bar-right">
+      <a href="index.html">Accueil</a>
+      <a href="orientation-conseil.html">Orientation</a>
+      <a href="#">Autres pays</a>
+    </div>
+  </div>
+
+  <header class="product-header">
+    <div class="product-header-inner">
+      <div>
+        <a href="orientation-conseil.html" class="product-logo-link">
+          <img src="logo-ct.png" alt="Cours Tocqueville" class="product-logo" />
+        </a>
+        <h1 class="product-title">Études à l'étranger — <em>Autres pays</em></h1>
+        <p class="product-subtitle">
+          Des destinations d'excellence souvent méconnues des familles françaises — Italie, Espagne, Irlande, Suisse, Europe du Nord, Israël. Moins de concurrence, des formations de très haut niveau.
+        </p>
+      </div>
+      <div class="product-header-cta">
+        <a href="tel:0142305011" class="btn-header-cta">📞 01 42 30 50 11 — Nous contacter</a>
+        <a href="#form" class="btn-header-cta btn-header-outline">✉ Nous écrire</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu-bar">
+    <button class="mobile-menu-btn" id="mnd-btn" onclick="toggleMobileNav()">
+      <span class="mobile-menu-btn-left">
+        <span class="mobile-menu-btn-icon">≡</span>
+        Menu — Études à l'étranger
+      </span>
+      <span class="mmb-chevron">▼</span>
+    </button>
+  </div>
+
+  <div class="mobile-nav-drawer" id="mnd">
+    <div class="mnd-header">
+      <span class="mnd-header-title">Navigation — Études à l'étranger</span>
+      <button class="mnd-close" onclick="toggleMobileNav()">✕ Fermer</button>
+    </div>
+    <div class="mnd-body">
+      <div class="mnd-section">
+        <span class="mnd-section-title">Études à l'étranger</span>
+        <a href="orientation-usa.html" class="mnd-link">États-Unis</a>
+        <a href="orientation-international.html" class="mnd-link active">Autres pays</a>
+        <a href="#bocconi" class="mnd-link-sub" onclick="toggleMobileNav()">Italie — Bocconi</a>
+        <a href="#esade" class="mnd-link-sub" onclick="toggleMobileNav()">Espagne — ESADE</a>
+        <a href="#irlande" class="mnd-link-sub" onclick="toggleMobileNav()">Irlande</a>
+        <a href="#suisse" class="mnd-link-sub" onclick="toggleMobileNav()">Suisse</a>
+        <a href="#europe-nord" class="mnd-link-sub" onclick="toggleMobileNav()">Europe du Nord</a>
+        <a href="#israel" class="mnd-link-sub" onclick="toggleMobileNav()">Israël</a>
+      </div>
+      <div class="mnd-section">
+        <span class="mnd-section-title">Admissions France</span>
+        <a href="orientation-master.html" class="mnd-link">Master & Réorientation</a>
+      </div>
+      <div class="mnd-section">
+        <span class="mnd-section-title">Orientation</span>
+        <a href="orientation-conseil.html" class="mnd-link">Tocqueville Orientation</a>
+      </div>
+      <div class="mnd-cta-box">
+        <p>Un projet d'études à l'étranger ? Nous vous rappelons sous 24h.</p>
+        <a href="#contact" class="mnd-cta-btn" onclick="toggleMobileNav()">Prendre contact</a>
+        <a href="tel:0142305011" class="mnd-tel">01 42 30 50 11</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <aside class="left-nav">
+      <div class="left-nav-section">
+        <span class="left-nav-title">Études à l'étranger</span>
+        <a href="orientation-usa.html">États-Unis</a>
+        <a href="orientation-international.html" class="active">Autres pays</a>
+        <a href="#bocconi" class="sub">Italie — Bocconi</a>
+        <a href="#esade" class="sub">Espagne — ESADE</a>
+        <a href="#irlande" class="sub">Irlande</a>
+        <a href="#suisse" class="sub">Suisse</a>
+        <a href="#europe-nord" class="sub">Europe du Nord</a>
+        <a href="#israel" class="sub">Israël</a>
+      </div>
+      <div class="left-nav-sep"></div>
+      <div class="left-nav-section">
+        <span class="left-nav-title">Admissions France</span>
+        <a href="orientation-master.html">Master & Réorientation</a>
+      </div>
+      <div class="left-nav-sep"></div>
+      <div class="left-nav-section">
+        <span class="left-nav-title">Orientation</span>
+        <a href="orientation-conseil.html">Tocqueville Orientation</a>
+      </div>
+      <div class="left-nav-cta">
+        <p>Un projet d'études à l'étranger ? Nous vous rappelons sous 24h.</p>
+        <a href="#contact">Prendre contact</a>
+        <a href="tel:0142305011" class="left-nav-tel">01 42 30 50 11</a>
+      </div>
+    </aside>
+
+    <main class="content">
+
+      <section class="content-section fi" id="introduction">
+        <div class="section-label"><div class="pipe"></div><span>Autres pays</span></div>
+        <h2>Des destinations d'excellence <em>souvent méconnues.</em></h2>
+        <p>En dehors des classiques — Royaume-Uni, États-Unis, Canada — il est possible pour les étudiants français d'intégrer des programmes d'excellence dans de nombreux autres pays. Ces destinations sont souvent méconnues des familles françaises, ce qui place les candidats qui s'y intéressent dans une position favorable : moins de concurrence, des procédures parfois plus accessibles, et des formations de très haut niveau.</p>
+        <div class="conseil-box">
+          <p><strong>C'est précisément sur ces destinations moins balisées que l'accompagnement fait la différence</strong> — nos conseillers connaissent les procédures, les formations et les attentes des jurys d'admission pour chacune d'elles.</p>
+        </div>
+      </section>
+
+      <section class="content-section fi" id="destinations">
+        <div class="section-label"><div class="pipe"></div><span>Les destinations</span></div>
+        <h2>Six destinations, <em>six profils d'excellence.</em></h2>
+
+        <div class="dest-block" id="bocconi">
+          <div class="dest-header">
+            <span class="dest-flag">🇮🇹</span>
+            <h3 class="dest-title">Italie — <em>Université Bocconi, Milan</em></h3>
+          </div>
+          <p class="dest-body">La Bocconi est la première université en économie et management d'Italie et figure dans le Top 10 européen des classements internationaux. Elle est accessible directement après le baccalauréat et propose des programmes entièrement en anglais. Dans un contexte post-Brexit où le Royaume-Uni est devenu plus complexe d'accès, la Bocconi s'impose comme une alternative de prestige très sérieuse. Les programmes disponibles couvrent l'économie, le management, les sciences sociales, la politique internationale et l'informatique.</p>
+          <p class="dest-body">La procédure d'admission comprend un test d'entrée spécifique (ou le SAT).</p>
+          <a href="#contact" class="dest-link">En savoir plus sur la préparation au test Bocconi →</a>
+        </div>
+
+        <div class="dest-sep"></div>
+
+        <div class="dest-block" id="esade">
+          <div class="dest-header">
+            <span class="dest-flag">🇪🇸</span>
+            <h3 class="dest-title">Espagne — <em>ESADE, Barcelone</em></h3>
+          </div>
+          <p class="dest-body">L'ESADE est l'une des Business Schools les plus réputées d'Europe, dans le Top 10 des classements internationaux. Son Bachelor of Business Administration est accessible après le baccalauréat et se déroule dans un environnement résolument international. Le test peut se passer entièrement en anglais — la maîtrise de l'espagnol n'est pas un prérequis pour candidater.</p>
+          <p class="dest-body">La procédure comprend un test d'entrée spécifique (ou le SAT) et un entretien.</p>
+          <a href="#contact" class="dest-link">En savoir plus sur la préparation au test ESADE →</a>
+        </div>
+
+        <div class="dest-sep"></div>
+
+        <div class="dest-block" id="irlande">
+          <div class="dest-header">
+            <span class="dest-flag">🇮🇪</span>
+            <h3 class="dest-title">Irlande — <em>Trinity College Dublin</em></h3>
+          </div>
+          <p class="dest-body">L'Irlande est une destination anglophone accessible, membre de l'Union européenne — ce qui la distingue du Royaume-Uni post-Brexit. Trinity College Dublin est l'une des universités les plus anciennes et les plus réputées d'Europe. La procédure centralisée CAO permet de candidater à plusieurs universités irlandaises simultanément.</p>
+        </div>
+
+        <div class="dest-sep"></div>
+
+        <div class="dest-block" id="suisse">
+          <div class="dest-header">
+            <span class="dest-flag">🇨🇭</span>
+            <h3 class="dest-title">Suisse</h3>
+          </div>
+          <p class="dest-body">La Suisse propose des formations d'excellence dans des domaines très spécifiques : management hôtelier (École hôtelière de Lausanne, parmi les meilleures au monde), ingénierie (EPFL), relations internationales, management (HEC Lausanne, Université de St-Gall). Un environnement multilingue, une qualité de vie exceptionnelle et des débouchés professionnels parmi les meilleurs d'Europe.</p>
+        </div>
+
+        <div class="dest-sep"></div>
+
+        <div class="dest-block" id="europe-nord">
+          <div class="dest-header">
+            <span class="dest-flag">🇳🇱</span>
+            <h3 class="dest-title">Europe du Nord</h3>
+          </div>
+          <p class="dest-body">Les universités néerlandaises, suédoises et danoises proposent de nombreux programmes entièrement en anglais, calés sur le modèle anglo-saxon. Amsterdam, Stockholm, Malmö — des destinations qui permettent de s'immerger dans une culture passionnante tout en bénéficiant d'un enseignement de très haut niveau, souvent moins cher que le Royaume-Uni.</p>
+        </div>
+
+        <div class="dest-sep"></div>
+
+        <div class="dest-block" id="israel">
+          <div class="dest-header">
+            <span class="dest-flag">🇮🇱</span>
+            <h3 class="dest-title">Israël</h3>
+          </div>
+          <p class="dest-body">L'Université de Tel-Aviv, IDC Herzliya et le Technion proposent des programmes très cotés, entièrement en anglais, accessibles aux étudiants français. Le niveau académique est parmi les plus élevés au monde — Israël compte l'un des plus forts taux de publications scientifiques par habitant. Une destination confidentielle mais d'excellence.</p>
+        </div>
+
+      </section>
+
+      <section class="content-section fi" id="accompagnement">
+        <div class="section-label"><div class="pipe"></div><span>Notre accompagnement</span></div>
+        <h2>Un plan <em>sur mesure</em> pour chaque projet.</h2>
+        <p>Les procédures étant très variées selon les pays et les établissements, nous établissons systématiquement un plan d'accompagnement sur mesure adapté à chaque projet. Nous vous guidons dans la sélection des formations pertinentes, la constitution du dossier et la préparation aux tests et entretiens requis.</p>
+      </section>
+
+      <section class="content-section fi" id="contact">
+        <div class="section-label"><div class="pipe"></div><span>Nous contacter</span></div>
+        <h2>Parlons de votre <em>projet.</em></h2>
+        <div class="contact-grid">
+          <div class="contact-form-box" id="form">
+            <p class="contact-intro">Décrivez-nous votre projet et nous vous rappelons sous 24h pour construire ensemble la stratégie la plus adaptée.</p>
+            <div class="form-row">
+              <div class="fg"><label>Prénom</label><input type="text" placeholder="Jean" /></div>
+              <div class="fg"><label>Nom</label><input type="text" placeholder="Dupont" /></div>
+            </div>
+            <div class="fg"><label>Email</label><input type="email" placeholder="jean.dupont@email.com" /></div>
+            <div class="fg"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00" /></div>
+            <div class="fg">
+              <label>Destination visée</label>
+              <select>
+                <option>— Choisir —</option>
+                <option>Italie — Bocconi</option>
+                <option>Espagne — ESADE</option>
+                <option>Irlande — Trinity College</option>
+                <option>Suisse</option>
+                <option>Europe du Nord</option>
+                <option>Israël</option>
+                <option>Autre / Je ne sais pas encore</option>
+              </select>
+            </div>
+            <div class="fg"><label>Votre projet</label><textarea placeholder="Niveau actuel, formations visées, questions…"></textarea></div>
+            <button class="btn-submit">Envoyer ma demande</button>
+            <p class="form-legal">Vos données ne sont utilisées qu'à des fins de contact et ne sont jamais cédées à des tiers.</p>
+          </div>
+          <div class="contact-aside">
+            <div class="contact-tel-block">
+              <div class="contact-tel-icon">📞</div>
+              <div>
+                <span class="contact-tel-label">Appel direct</span>
+                <a href="tel:0142305011" class="contact-tel-num">01 42 30 50 11</a>
+              </div>
+            </div>
+            <div class="contact-addr">
+              <strong>Cours Tocqueville</strong>
+              5, rue Vital · 75016 Paris<br />
+              Métro Passy (L6) · Trocadéro (L6/L9)<br />
+              RER C : Boulainvilliers
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="sticky-mobile">
+    <a href="tel:0142305011" class="sm-call">📞 01 42 30 50 11</a>
+    <a href="#form" class="sm-form">✉ Nous écrire</a>
+  </div>
+
+  <script>
+    function toggleMobileNav() {
+      const drawer = document.getElementById("mnd");
+      const btn = document.getElementById("mnd-btn");
+      const isOpen = drawer.classList.contains("open");
+      drawer.classList.toggle("open");
+      btn.classList.toggle("open");
+      document.body.style.overflow = isOpen ? "" : "hidden";
+      document.querySelectorAll(".sticky-mobile").forEach(el => {
+        el.style.display = isOpen ? "" : "none";
+      });
+    }
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("v"); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll(".fi").forEach(el => obs.observe(el));
+
+    // Ancres actives dans le menu gauche
+    const anchors = document.querySelectorAll(".left-nav a.sub");
+    const destBlocks = document.querySelectorAll(".dest-block[id]");
+    const anchorObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          anchors.forEach(a => {
+            a.classList.remove("active");
+            if (a.getAttribute("href") === "#" + e.target.id) a.classList.add("active");
+          });
+        }
+      });
+    }, { threshold: 0.4, rootMargin: "-10% 0px -50% 0px" });
+    destBlocks.forEach(b => anchorObs.observe(b));
+  </script>
+</body>
+</html>
