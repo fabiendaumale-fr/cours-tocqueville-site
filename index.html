@@ -378,6 +378,19 @@
 
     .fi { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fi.v { opacity: 1; transform: none; }
+  
+    .sub-title {
+      display: block; font-family: var(--sans); font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(0,0,0,0.32); margin: 14px 0 5px;
+    }
+    .sub-link {
+      display: block; font-family: var(--sans); font-size: 0.9rem; font-weight: 300;
+      color: var(--anth); text-decoration: none; padding: 5px 0;
+      transition: color 0.2s;
+    }
+    .sub-link:hover { color: var(--bx); }
+    .drawer-item.open .drawer-sub { max-height: 800px; }
   </style>
 </head>
 <body>
@@ -416,7 +429,7 @@
         <div class="mega"><div class="mega-inner c4">
           <div class="mega-col"><span class="mega-col-title">Grandes Écoles</span><a href="#" class="mega-link">Sciences Po Paris</a><a href="#" class="mega-link">IEP de province</a><a href="celsa.html" class="mega-link">CELSA</a><a href="#" class="mega-link">Écoles de commerce</a></div>
           <div class="mega-col"><span class="mega-col-title">Architecture &amp; Design</span><a href="#" class="mega-link">Prépa Architecture</a><a href="#" class="mega-link">Concours ENSA</a></div>
-          <div class="mega-col"><span class="mega-col-title">Santé</span><a href="#" class="mega-link">PASS / LAS</a><a href="#" class="mega-link">Médecine &amp; Pharmacie</a></div>
+          <div class="mega-col"><span class="mega-col-title">Université</span><a href="#" class="mega-link">Prépa Droit</a><a href="#" class="mega-link">Prépa Université</a></div>
           <div class="mega-cta"><p>Un accompagnement sur mesure pour chaque concours.</p><a href="#contact">Prendre contact</a></div>
         </div></div>
       </li>
@@ -432,10 +445,10 @@
       <li>
         <a href="#">Orientation <span class="chev">▼</span></a>
         <div class="mega"><div class="mega-inner c4">
-          <div class="mega-col"><span class="mega-col-title">Conseil</span><a href="orientation-conseil.html" class="mega-link">Conseil &amp; Réorientation</a><a href="#" class="mega-link">Choix post-bac</a><a href="#" class="mega-link">Réorientation</a></div>
-          <div class="mega-col"><span class="mega-col-title">Admissions France</span><a href="orientation-master.html" class="mega-link">Orientation Master</a><a href="#" class="mega-link">Master &amp; réorientation</a></div>
-          <div class="mega-col"><span class="mega-col-title">International</span><a href="orientation-usa.html" class="mega-link">Études aux USA</a><a href="orientation-international.html" class="mega-link">Autres pays</a><a href="orientation-international.html" class="mega-link">UK &amp; Canada</a></div>
-          <div class="mega-cta"><p>Construisez votre projet d'études en France ou à l'étranger.</p><a href="#contact">Prendre contact</a></div>
+          <div class="mega-col"><span class="mega-col-title">Conseil</span><a href="orientation-conseil.html" class="mega-link">Bilan d'orientation</a><a href="orientation-conseil.html" class="mega-link">Choix de filière post-bac</a><a href="orientation-conseil.html" class="mega-link">Réorientation</a></div>
+          <div class="mega-col"><span class="mega-col-title">Admissions France</span><a href="orientation-master.html" class="mega-link">Parcoursup</a><a href="orientation-master.html" class="mega-link">Écoles sélectives</a><a href="orientation-master.html" class="mega-link">Master &amp; réorientation</a></div>
+          <div class="mega-col"><span class="mega-col-title">Admissions Internationales</span><a href="orientation-usa.html" class="mega-link">Étudier aux USA</a><a href="orientation-international.html" class="mega-link">Étudier en UK</a><a href="orientation-international.html" class="mega-link">Étudier au Canada</a><a href="orientation-international.html" class="mega-link">Autres pays</a></div>
+          <div class="mega-cta"><p>Un conseil personnalisé pour construire votre projet d'études en France ou à l'étranger.</p><a href="#contact">Prendre contact</a></div>
         </div></div>
       </li>
     </ul>
@@ -449,11 +462,94 @@
   <!-- MOBILE DRAWER -->
   <div class="mobile-drawer" id="drawer">
     <div class="drawer-header"><button class="drawer-close" onclick="toggleDrawer()">✕ Fermer</button></div>
-    <div class="drawer-item"><button class="drawer-toggle" onclick="toggleAcc(this)">Lycée <span class="d-chev">▼</span></button><div class="drawer-sub"><div class="drawer-sub-inner"><span class="sub-title">Niveau</span><a href="#" class="sub-link">Collège</a><a href="#" class="sub-link">Seconde</a><a href="#" class="sub-link">Première</a><a href="#" class="sub-link">Terminale</a><span class="sub-title">Orientation</span><a href="orientation-master.html" class="sub-link">Orientation Master</a></div></div></div>
-    <div class="drawer-item"><button class="drawer-toggle" onclick="toggleAcc(this)">Prépa <span class="d-chev">▼</span></button><div class="drawer-sub"><div class="drawer-sub-inner"><span class="sub-title">Scientifiques</span><a href="#" class="sub-link">Maths Sup / Spé</a><a href="#" class="sub-link">BCPST / Véto</a><span class="sub-title">Économiques &amp; Littéraires</span><a href="#" class="sub-link">ECG / HEC</a><a href="#" class="sub-link">Khâgne</a></div></div></div>
-    <div class="drawer-item"><button class="drawer-toggle" onclick="toggleAcc(this)">Admissions &amp; Concours <span class="d-chev">▼</span></button><div class="drawer-sub"><div class="drawer-sub-inner"><a href="#" class="sub-link">Sciences Po</a><a href="#" class="sub-link">Prépa Architecture</a><a href="#" class="sub-link">CELSA</a><a href="#" class="sub-link">PASS / LAS</a></div></div></div>
-    <div class="drawer-item"><button class="drawer-toggle" onclick="toggleAcc(this)">Langues &amp; Tests <span class="d-chev">▼</span></button><div class="drawer-sub"><div class="drawer-sub-inner"><span class="sub-title">Tests de langue</span><a href="#" class="sub-link">TOEFL</a><a href="#" class="sub-link">IELTS</a><span class="sub-title">Tests d'aptitude</span><a href="#" class="sub-link">SAT</a><a href="#" class="sub-link">GMAT</a><a href="#" class="sub-link">Bocconi</a></div></div></div>
-    <div class="drawer-item"><button class="drawer-toggle" onclick="toggleAcc(this)">Orientation <span class="d-chev">▼</span></button><div class="drawer-sub"><div class="drawer-sub-inner"><a href="orientation-conseil.html" class="sub-link">Conseil &amp; Réorientation</a><a href="orientation-master.html" class="sub-link">Orientation Master</a><a href="orientation-usa.html" class="sub-link">Études aux USA</a><a href="orientation-international.html" class="sub-link">Autres pays</a></div></div></div>
+
+    <div class="drawer-item">
+      <button class="drawer-toggle" onclick="toggleAcc(this)">Lycée <span class="d-chev">▼</span></button>
+      <div class="drawer-sub"><div class="drawer-sub-inner">
+        <span class="sub-title">Niveau</span>
+        <a href="#" class="sub-link">Collège</a>
+        <a href="#" class="sub-link">Seconde</a>
+        <a href="#" class="sub-link">Première</a>
+        <a href="#" class="sub-link">Terminale</a>
+        <span class="sub-title">Matières</span>
+        <a href="#" class="sub-link">Mathématiques</a>
+        <a href="#" class="sub-link">Physique-Chimie</a>
+        <a href="#" class="sub-link">Français &amp; Philo</a>
+        <a href="#" class="sub-link">Langues vivantes</a>
+        <span class="sub-title">Orientation</span>
+        <a href="#" class="sub-link">Parcoursup</a>
+        <a href="#" class="sub-link">Histoires d'élèves</a>
+      </div></div>
+    </div>
+
+    <div class="drawer-item">
+      <button class="drawer-toggle" onclick="toggleAcc(this)">Prépa <span class="d-chev">▼</span></button>
+      <div class="drawer-sub"><div class="drawer-sub-inner">
+        <span class="sub-title">Scientifiques</span>
+        <a href="#" class="sub-link">Maths Sup / Maths Spé</a>
+        <a href="#" class="sub-link">BCPST / Véto</a>
+        <a href="#" class="sub-link">PC / PSI / MP</a>
+        <span class="sub-title">Économiques</span>
+        <a href="#" class="sub-link">ECG / Prépa HEC</a>
+        <span class="sub-title">Littéraires</span>
+        <a href="#" class="sub-link">Hypokhâgne / Khâgne</a>
+        <a href="#" class="sub-link">ENS / Agrégation</a>
+      </div></div>
+    </div>
+
+    <div class="drawer-item">
+      <button class="drawer-toggle" onclick="toggleAcc(this)">Admissions &amp; Concours <span class="d-chev">▼</span></button>
+      <div class="drawer-sub"><div class="drawer-sub-inner">
+        <span class="sub-title">Grandes Écoles</span>
+        <a href="#" class="sub-link">Sciences Po Paris</a>
+        <a href="celsa.html" class="sub-link">CELSA</a>
+        <a href="#" class="sub-link">Écoles de commerce</a>
+        <span class="sub-title">Architecture &amp; Design</span>
+        <a href="#" class="sub-link">Prépa Architecture</a>
+        <a href="#" class="sub-link">Concours ENSA</a>
+        <span class="sub-title">Université</span>
+        <a href="#" class="sub-link">Prépa Droit</a>
+        <a href="#" class="sub-link">Prépa Université</a>
+      </div></div>
+    </div>
+
+    <div class="drawer-item">
+      <button class="drawer-toggle" onclick="toggleAcc(this)">Langues &amp; Tests <span class="d-chev">▼</span></button>
+      <div class="drawer-sub"><div class="drawer-sub-inner">
+        <span class="sub-title">Tests de langue</span>
+        <a href="#" class="sub-link">TOEFL</a>
+        <a href="#" class="sub-link">IELTS</a>
+        <a href="#" class="sub-link">TCF / DELF</a>
+        <span class="sub-title">Tests d'aptitude</span>
+        <a href="#" class="sub-link">SAT</a>
+        <a href="#" class="sub-link">GMAT / TAGE MAGE</a>
+        <a href="#" class="sub-link">GRE</a>
+        <span class="sub-title">Tests écoles</span>
+        <a href="#" class="sub-link">Bocconi</a>
+        <a href="#" class="sub-link">ESADE / ESCP</a>
+        <a href="#" class="sub-link">Oxford / Cambridge</a>
+      </div></div>
+    </div>
+
+    <div class="drawer-item">
+      <button class="drawer-toggle" onclick="toggleAcc(this)">Orientation <span class="d-chev">▼</span></button>
+      <div class="drawer-sub"><div class="drawer-sub-inner">
+        <span class="sub-title">Conseil</span>
+        <a href="orientation-conseil.html" class="sub-link">Bilan d'orientation</a>
+        <a href="orientation-conseil.html" class="sub-link">Choix de filière post-bac</a>
+        <a href="orientation-conseil.html" class="sub-link">Réorientation</a>
+        <span class="sub-title">Admissions France</span>
+        <a href="orientation-master.html" class="sub-link">Parcoursup</a>
+        <a href="orientation-master.html" class="sub-link">Master &amp; réorientation</a>
+        <a href="orientation-master.html" class="sub-link">Écoles sélectives</a>
+        <span class="sub-title">International</span>
+        <a href="orientation-usa.html" class="sub-link">Étudier aux USA</a>
+        <a href="orientation-international.html" class="sub-link">Étudier en UK</a>
+        <a href="orientation-international.html" class="sub-link">Étudier au Canada</a>
+        <a href="orientation-international.html" class="sub-link">Autres pays</a>
+      </div></div>
+    </div>
+
     <a href="#contact" class="drawer-simple" onclick="toggleDrawer()">Contact</a>
     <a href="tel:0142305011" class="drawer-tel">📞 01 42 30 50 11</a>
   </div>
