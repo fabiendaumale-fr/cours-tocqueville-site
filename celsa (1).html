@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prépa CELSA — Cours Tocqueville</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bx:        #6B1A2A;
+      --bx-dk:     #4A1020;
+      --bx-lt:     #8C2A3E;
+      --ivoire:    #F7F3ED;
+      --ivoire-dk: #EDE7DE;
+      --anthracite:#1C1C1C;
+      --gris:      #6B6B6B;
+      --gris-cl:   #D4CEC6;
+      --blanc:     #FFFFFF;
+      --t:         0.3s ease;
+      --f-head:    'Cormorant Garamond', Georgia, serif;
+      --f-body:    'DM Sans', sans-serif;
+      --f-weight-head: 300;
+      --f-weight-em:   400;
+      --left-nav-w: 260px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--ivoire); font-family: var(--f-body); font-size: 16px; overflow-x: hidden; color: var(--anthracite); }
+
+    /* ── RETOUR TOCQUEVILLE ── */
+    .back-bar {
+      background: var(--anthracite);
+      padding: 0 48px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .back-link {
+      font-family: var(--f-body);
+      font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: color var(--t);
+    }
+    .back-link:hover { color: var(--blanc); }
+    .back-bar-right {
+      display: flex; gap: 24px;
+    }
+    .back-bar-right a {
+      font-family: var(--f-body);
+      font-size: 0.65rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none; transition: color var(--t);
+    }
+    .back-bar-right a:hover { color: var(--blanc); }
+
+    /* ── PRODUCT HEADER ── */
+    .product-header {
+      background: var(--bx);
+      padding: 56px 48px 52px;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-header::before {
+      content: 'CELSA';
+      position: absolute;
+      right: -20px; bottom: -40px;
+      font-family: var(--f-head);
+      font-size: 14rem; font-weight: 700;
+      color: rgba(255,255,255,0.04);
+      line-height: 1; pointer-events: none;
+      letter-spacing: -0.02em;
+    }
+    .product-header-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 48px;
+    }
+    .product-logo-link { display: inline-block; margin-bottom: 20px; }
+    .product-logo {
+      height: 72px; width: auto;
+      background: var(--blanc);
+      padding: 8px 12px;
+      display: block;
+    }
+
+    .product-eyebrow {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .product-eyebrow::before {
+      content: '';
+      display: inline-block; width: 28px; height: 1.5px;
+      background: rgba(255,255,255,0.35);
+    }
+    .product-eyebrow span {
+      font-family: var(--f-body);
+      font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .product-title {
+      font-family: var(--f-head);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--blanc);
+      margin-bottom: 16px;
+    }
+    .product-title em {
+      font-style: italic; font-weight: 400;
+      color: rgba(255,255,255,0.7);
+    }
+    .product-subtitle {
+      font-family: var(--f-body);
+      font-size: 0.9rem; font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7; max-width: 560px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .product-subtitle::before {
+      content: '';
+      display: block; width: 2px; min-height: 48px;
+      background: rgba(255,255,255,0.25);
+      flex-shrink: 0; margin-top: 3px;
+    }
+    .product-header-cta {
+      display: flex; flex-direction: column; gap: 12px;
+      align-items: flex-end; flex-shrink: 0;
+    }
+    .result-badge {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 14px 20px;
+      text-align: center;
+    }
+    .result-badge .r-num {
+      font-family: var(--f-head);
+      font-size: 2rem; font-weight: 300;
+      color: var(--blanc); display: block; line-height: 1;
+    }
+    .result-badge .r-lbl {
+      font-family: var(--f-body);
+      font-size: 0.65rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); margin-top: 4px;
+    }
+    .btn-header-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--blanc); color: var(--bx);
+      font-family: var(--f-body);
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; padding: 14px 24px;
+      transition: background var(--t);
+      white-space: nowrap;
+    }
+    .btn-header-cta:hover { background: var(--ivoire-dk); }
+    .btn-header-outline {
+      background: transparent !important;
+      color: var(--blanc) !important;
+      border: 1px solid rgba(255,255,255,0.45);
+    }
+    .btn-header-outline:hover { background: rgba(255,255,255,0.1) !important; }
+
+    /* ── MOBILE MENU BUTTON ── */
+    .mobile-menu-bar {
+      display: none;
+      position: sticky; top: 0; z-index: 40;
+      background: var(--blanc);
+      border-bottom: 2px solid var(--bx);
+      padding: 0 20px;
+    }
+    .mobile-menu-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 14px 0;
+      font-family: var(--f-body);
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--bx);
+    }
+    .mobile-menu-btn-left { display: flex; align-items: center; gap: 10px; }
+    .mobile-menu-btn-icon { font-size: 1.2rem; line-height: 1; }
+    .mmb-chevron { font-size: 0.6rem; color: var(--gris); transition: transform 0.25s ease; }
+    .mobile-menu-btn.open .mmb-chevron { transform: rotate(180deg); }
+
+    /* ── MOBILE NAV DRAWER ── */
+    .mobile-nav-drawer {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 80;
+      background: var(--blanc);
+      overflow-y: auto;
+      transform: translateX(-100%);
+      transition: transform 0.32s ease;
+    }
+    .mobile-nav-drawer.open { transform: translateX(0); }
+    .mnd-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--gris-cl);
+      position: sticky; top: 0; background: var(--blanc); z-index: 2;
+    }
+    .mnd-header-title {
+      font-family: var(--f-body);
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--bx);
+    }
+    .mnd-close {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--bx); border: none; cursor: pointer;
+      padding: 9px 16px;
+      font-family: var(--f-body); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--blanc); transition: background var(--t);
+    }
+    .mnd-close:hover { background: var(--bx-dk); }
+    .mnd-body { padding: 16px 20px 100px; }
+    .mnd-section { margin-bottom: 24px; }
+    .mnd-section-title {
+      font-family: var(--f-body);
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--bx);
+      padding-bottom: 8px; border-bottom: 1px solid var(--gris-cl);
+      margin-bottom: 6px; display: block;
+    }
+    .mnd-link {
+      display: block; font-family: var(--f-body);
+      font-size: 0.95rem; font-weight: 400;
+      color: var(--anthracite); text-decoration: none;
+      padding: 11px 0; border-bottom: 1px solid var(--ivoire-dk);
+      transition: color var(--t), padding-left var(--t);
+    }
+    .mnd-link:hover { color: var(--bx); padding-left: 6px; }
+    .mnd-cta-box { margin-top: 28px; background: var(--bx); padding: 20px; }
+    .mnd-cta-box p {
+      font-family: var(--f-body); font-size: 0.8rem; font-weight: 300;
+      color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 14px;
+    }
+    .mnd-cta-btn {
+      display: block; text-align: center;
+      background: var(--blanc); color: var(--bx);
+      font-family: var(--f-body); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; padding: 11px; margin-bottom: 10px;
+    }
+    .mnd-tel {
+      display: block; text-align: center;
+      font-family: var(--f-head); font-size: 1.2rem; font-weight: 400;
+      color: var(--blanc); text-decoration: none;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .page-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 48px 96px;
+      display: grid;
+      grid-template-columns: var(--left-nav-w) 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* ── LEFT NAV ── */
+    .left-nav {
+      position: sticky;
+      top: 24px;
+    }
+    .left-nav-section { margin-bottom: 28px; }
+    .left-nav-title {
+      font-family: var(--f-body);
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--bx);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--gris-cl);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .left-nav a {
+      display: block;
+      font-family: var(--f-body);
+      font-size: 0.82rem; font-weight: 400;
+      color: var(--gris); text-decoration: none;
+      padding: 6px 0 6px 12px;
+      border-left: 2px solid transparent;
+      transition: color var(--t), border-color var(--t);
+      line-height: 1.4;
+    }
+    .left-nav a:hover,
+    .left-nav a.active {
+      color: var(--bx);
+      border-left-color: var(--bx);
+    }
+    .left-nav-sub {
+      padding-left: 12px;
+    }
+    .left-nav-sub a {
+      font-size: 0.76rem;
+      color: var(--gris);
+      padding: 4px 0 4px 12px;
+    }
+
+    /* CTA dans le left nav */
+    .left-nav-cta {
+      margin-top: 32px;
+      background: var(--bx);
+      padding: 20px;
+    }
+    .left-nav-cta p {
+      font-family: var(--f-body);
+      font-size: 0.78rem; font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6; margin-bottom: 14px;
+    }
+    .left-nav-cta a {
+      display: block;
+      background: var(--blanc); color: var(--bx);
+      font-family: var(--f-body);
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; padding: 10px 16px;
+      text-align: center; transition: background var(--t);
+    }
+    .left-nav-cta a:hover { background: var(--ivoire-dk); }
+    .left-nav-tel {
+      margin-top: 10px;
+      font-family: var(--f-head);
+      font-size: 1.1rem; font-weight: 400;
+      color: var(--blanc); text-align: center;
+      display: block; text-decoration: none;
+    }
+
+    /* ── CONTENT ── */
+    .content { min-width: 0; }
+
+    .content-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 24px;
+    }
+
+    .section-label {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .section-label .pipe {
+      width: 2px; height: 18px; background: var(--bx);
+    }
+    .section-label span {
+      font-family: var(--f-body);
+      font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--bx);
+    }
+
+    .content h2 {
+      font-family: var(--f-head);
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--anthracite); margin-bottom: 20px;
+    }
+    .content h2 em { font-style: italic; color: var(--bx); }
+
+    .content h3 {
+      font-family: var(--f-head);
+      font-size: 1.3rem; font-weight: 500;
+      color: var(--anthracite); margin-bottom: 10px;
+      margin-top: 28px;
+    }
+
+    .content p {
+      font-family: var(--f-body);
+      font-size: 0.9rem; font-weight: 300;
+      color: var(--anthracite); line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .content ul {
+      list-style: none;
+      margin-bottom: 16px;
+      padding-left: 0;
+    }
+    .content ul li {
+      font-family: var(--f-body);
+      font-size: 0.88rem; font-weight: 300;
+      color: var(--anthracite); line-height: 1.7;
+      padding: 5px 0 5px 18px;
+      position: relative;
+    }
+    .content ul li::before {
+      content: '';
+      position: absolute; left: 0; top: 13px;
+      width: 6px; height: 1.5px;
+      background: var(--bx);
+    }
+
+    /* Résultat highlight */
+    .result-highlight {
+      background: var(--blanc);
+      border-left: 3px solid var(--bx);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      display: flex; align-items: center; gap: 24px;
+    }
+    .result-highlight .rh-num {
+      font-family: var(--f-head);
+      font-size: 2.5rem; font-weight: 300;
+      color: var(--bx); line-height: 1; flex-shrink: 0;
+    }
+    .result-highlight .rh-text {
+      font-family: var(--f-body);
+      font-size: 0.85rem; font-weight: 300;
+      color: var(--gris); line-height: 1.6;
+    }
+    .result-highlight .rh-text strong {
+      display: block; color: var(--anthracite);
+      font-weight: 500; margin-bottom: 2px;
+    }
+
+    /* Format cards */
+    .format-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .format-card {
+      background: var(--blanc);
+      padding: 24px 20px;
+      border: 1px solid var(--gris-cl);
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--t);
+    }
+    .format-card:hover { border-color: var(--bx); }
+    .format-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--bx);
+      transform: scaleY(0); transform-origin: bottom;
+      transition: transform var(--t);
+    }
+    .format-card:hover::before { transform: scaleY(1); }
+    .format-card h4 {
+      font-family: var(--f-head);
+      font-size: 1.1rem; font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .format-card p {
+      font-size: 0.82rem; color: var(--gris);
+      margin-bottom: 0; line-height: 1.6;
+    }
+    .format-tag {
+      display: inline-block; margin-bottom: 10px;
+      font-family: var(--f-body);
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 3px 10px;
+      border: 1px solid var(--bx); color: var(--bx);
+      border-radius: 20px;
+    }
+
+    /* Encadré conseil */
+    .conseil-box {
+      background: var(--ivoire-dk);
+      border-left: 3px solid var(--bx);
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .conseil-box p {
+      font-family: var(--f-body);
+      font-size: 0.85rem; font-weight: 300;
+      color: var(--anthracite); line-height: 1.7;
+      margin-bottom: 0;
+    }
+    .conseil-box strong { color: var(--bx); font-weight: 500; }
+
+    /* Profs */
+    .prof-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 20px;
+    }
+    .prof-card-mini {
+      background: var(--blanc);
+      padding: 20px;
+      display: flex; gap: 14px; align-items: flex-start;
+      border: 1px solid var(--gris-cl);
+    }
+    .prof-init-mini {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1.5px solid var(--bx);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--f-head);
+      font-size: 1rem; color: var(--bx);
+    }
+    .prof-card-mini h4 {
+      font-family: var(--f-head);
+      font-size: 0.95rem; font-weight: 500; margin-bottom: 3px;
+    }
+    .prof-card-mini p {
+      font-size: 0.78rem; color: var(--gris);
+      line-height: 1.5; margin-bottom: 0;
+    }
+
+    /* Témoignage */
+    .testi-box {
+      background: var(--bx);
+      padding: 32px 36px;
+      margin-top: 24px;
+    }
+    .testi-box blockquote {
+      font-family: var(--f-head);
+      font-size: 1.15rem; font-style: italic; font-weight: 300;
+      color: rgba(255,255,255,0.9); line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .testi-box cite {
+      font-family: var(--f-body);
+      font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); font-style: normal;
+    }
+
+    /* CTA section finale */
+    .cta-section {
+      background: var(--anthracite);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center; gap: 32px;
+      margin-top: 48px;
+    }
+    .cta-section h3 {
+      font-family: var(--f-head);
+      font-size: 1.8rem; font-weight: 300;
+      color: var(--blanc); margin-bottom: 8px;
+    }
+    .cta-section h3 em { font-style: italic; color: rgba(255,255,255,0.55); }
+    .cta-section p {
+      font-family: var(--f-body);
+      font-size: 0.85rem; font-weight: 300;
+      color: rgba(255,255,255,0.5); margin-bottom: 0;
+    }
+    .cta-section-actions {
+      display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blanc); color: var(--bx);
+      font-family: var(--f-body);
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; padding: 14px 24px;
+      transition: background var(--t); white-space: nowrap;
+    }
+    .btn-primary:hover { background: var(--ivoire-dk); }
+    .btn-tel {
+      font-family: var(--f-head);
+      font-size: 1.2rem; font-weight: 400;
+      color: var(--blanc); text-decoration: none;
+      text-align: right; display: block;
+    }
+
+    /* ── STICKY MOBILE CTA ── */
+    .sticky-mobile {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+      background: var(--bx); padding: 12px 16px; gap: 10px;
+    }
+    .sticky-mobile a {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      gap: 7px; padding: 12px 8px; text-decoration: none;
+      font-family: var(--f-body); font-size: 0.82rem; font-weight: 500;
+    }
+    .sm-call { background: var(--blanc); color: var(--bx); }
+    .sm-form { background: transparent; color: var(--blanc); border: 1px solid rgba(255,255,255,0.35); }
+
+    /* ── CONTACT FORM ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 40px; margin-top: 24px; align-items: start;
+    }
+    .contact-intro {
+      font-family: var(--f-body);
+      font-size: 0.88rem; font-weight: 300;
+      color: var(--gris); line-height: 1.7; margin-bottom: 20px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fg { margin-bottom: 14px; }
+    label {
+      display: block; font-family: var(--f-body);
+      font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gris); margin-bottom: 5px;
+    }
+    input, select, textarea {
+      width: 100%; background: var(--blanc);
+      border: 1px solid var(--gris-cl); padding: 11px 14px;
+      font-family: var(--f-body); font-size: 0.87rem; font-weight: 300;
+      color: var(--anthracite); outline: none; appearance: none;
+      transition: border-color var(--t);
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--bx); }
+    textarea { resize: vertical; min-height: 90px; }
+    .btn-submit {
+      width: 100%; padding: 14px;
+      background: var(--bx); color: var(--blanc);
+      font-family: var(--f-body); font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      border: none; cursor: pointer; margin-top: 4px;
+      transition: background var(--t);
+    }
+    .btn-submit:hover { background: var(--bx-dk); }
+    .form-legal {
+      font-family: var(--f-body); font-size: 0.67rem; font-weight: 300;
+      color: var(--gris); margin-top: 10px; line-height: 1.5;
+    }
+    .contact-aside { display: flex; flex-direction: column; gap: 20px; }
+    .contact-tel-block {
+      background: var(--bx); padding: 24px 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .contact-tel-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .contact-tel-label {
+      font-family: var(--f-body); font-size: 0.65rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); display: block; margin-bottom: 3px;
+    }
+    .contact-tel-num {
+      font-family: var(--f-head); font-size: 1.35rem; font-weight: 400;
+      color: var(--blanc); text-decoration: none; display: block;
+    }
+    .contact-addr {
+      font-family: var(--f-body); font-size: 0.82rem; font-weight: 300;
+      color: var(--gris); line-height: 1.8;
+      padding: 20px; background: var(--blanc);
+      border: 1px solid var(--gris-cl);
+    }
+    .contact-addr strong {
+      font-family: var(--f-head); font-size: 0.95rem; font-weight: 500;
+      color: var(--anthracite); display: block; margin-bottom: 4px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .back-bar { padding: 0 20px; }
+      .back-bar-right { display: none; }
+      .product-header { padding: 40px 24px 36px; }
+      .product-header-inner { grid-template-columns: 1fr; gap: 0; }
+      .product-header-cta { display: none; }
+      .page-body { grid-template-columns: 1fr; padding: 32px 24px 80px; gap: 0; }
+      .left-nav { display: none; }
+      .mobile-menu-bar { display: block; }
+      .mobile-nav-drawer { display: block; }
+      .content { padding-top: 32px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .format-cards { grid-template-columns: 1fr; }
+      .prof-cards { grid-template-columns: 1fr; }
+      .contact-aside { flex-direction: row; flex-wrap: wrap; }
+      .contact-tel-block { flex: 1; min-width: 200px; }
+      .prof-cards { grid-template-columns: 1fr; }
+      .cta-section { grid-template-columns: 1fr; padding: 32px 24px; }
+      .cta-section-actions { align-items: flex-start; }
+      .sticky-mobile { display: flex; }
+      body { padding-bottom: 68px; }
+    }
+
+    @media (max-width: 600px) {
+      .product-title { font-size: clamp(2.2rem, 8vw, 3rem); }
+    }
+
+    /* Fade in */
+    .fi { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fi.v { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- RETOUR TOCQUEVILLE -->
+        <div class="back-bar">
+    <a href="index.html" class="back-link">← Cours Tocqueville</a>
+    <div class="back-bar-right">
+      <a href="index.html">Accueil</a>
+      <a href="#">Admissions &amp; Concours</a>
+      <a href="#">Prépa CELSA</a>
+    </div>
+  </div>
+
+  <!-- PRODUCT HEADER -->
+  <header class="product-header">
+    <div class="product-header-inner">
+      <div>
+        <a href="index.html" class="product-logo-link">
+          <img src="logo-ct.png" alt="Cours Tocqueville" class="product-logo" />
+        </a>
+        <h1 class="product-title">Prépa <em>CELSA</em></h1>
+        <p class="product-subtitle">
+          Une préparation sur mesure au concours du CELSA — école des Hautes Études en Sciences de l'Information rattachée à Paris IV-Sorbonne. 60% d'admissibles et 35% d'admis lors de la session 2025.
+        </p>
+      </div>
+      <div class="product-header-cta">
+        <a href="tel:0142305011" class="btn-header-cta">📞 01 42 30 50 11 — Nous contacter</a>
+        <a href="#form" class="btn-header-cta btn-header-outline">✉ Nous écrire</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU BUTTON -->
+  <div class="mobile-menu-bar">
+    <button class="mobile-menu-btn" id="mnd-btn" onclick="toggleMobileNav()">
+      <span class="mobile-menu-btn-left">
+        <span class="mobile-menu-btn-icon">≡</span>
+        Menu CELSA
+      </span>
+      <span class="mmb-chevron">▼</span>
+    </button>
+  </div>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div class="mobile-nav-drawer" id="mnd">
+    <div class="mnd-header">
+      <span class="mnd-header-title">Navigation — Prépa CELSA</span>
+      <button class="mnd-close" onclick="toggleMobileNav()">✕ Fermer</button>
+    </div>
+    <div class="mnd-body">
+      <div class="mnd-section">
+        <span class="mnd-section-title">Présentation</span>
+        <a href="#presentation" class="mnd-link" onclick="toggleMobileNav()">La Prépa CELSA</a>
+        <a href="#concours" class="mnd-link" onclick="toggleMobileNav()">Le concours</a>
+        <a href="#filieres" class="mnd-link" onclick="toggleMobileNav()">Choisir sa filière</a>
+      </div>
+      <div class="mnd-section">
+        <span class="mnd-section-title">Formats de cours</span>
+        <a href="#formats" class="mnd-link" onclick="toggleMobileNav()">Vue d'ensemble</a>
+        <a href="#tutorat" class="mnd-link" onclick="toggleMobileNav()">Tutorat individuel</a>
+        <a href="#annuelle" class="mnd-link" onclick="toggleMobileNav()">Prépa annuelle (samedis)</a>
+        <a href="#stages" class="mnd-link" onclick="toggleMobileNav()">Stages intensifs</a>
+      </div>
+      <div class="mnd-section">
+        <span class="mnd-section-title">Réussir le CELSA</span>
+        <a href="#lectures" class="mnd-link" onclick="toggleMobileNav()">Lectures incontournables</a>
+        <a href="#astuces" class="mnd-link" onclick="toggleMobileNav()">Conseils des admis</a>
+        <a href="#responsables" class="mnd-link" onclick="toggleMobileNav()">Responsables pédagogiques</a>
+      </div>
+      <div class="mnd-section">
+        <span class="mnd-section-title">Informations pratiques</span>
+        <a href="#resultats" class="mnd-link" onclick="toggleMobileNav()">Résultats &amp; témoignages</a>
+        <a href="#contact" class="mnd-link" onclick="toggleMobileNav()">Nous contacter</a>
+      </div>
+      <div class="mnd-cta-box">
+        <p>Un projet CELSA ? Parlons-en — nous vous rappelons sous 24h.</p>
+        <a href="#contact" class="mnd-cta-btn" onclick="toggleMobileNav()">Prendre contact</a>
+        <a href="tel:0142305011" class="mnd-tel">01 42 30 50 11</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY : LEFT NAV + CONTENT -->
+  <div class="page-body">
+
+    <!-- LEFT NAV -->
+    <aside class="left-nav">
+      <div class="left-nav-section">
+        <span class="left-nav-title">Présentation</span>
+        <a href="#presentation" class="active">La Prépa CELSA</a>
+        <a href="#concours">Le concours</a>
+        <a href="#filieres">Choisir sa filière</a>
+      </div>
+
+      <div class="left-nav-section">
+        <span class="left-nav-title">Formats de cours</span>
+        <a href="#tutorat">Tutorat individuel</a>
+        <a href="#annuelle">Prépa annuelle (samedis)</a>
+        <a href="#stages">Stages intensifs</a>
+      </div>
+
+      <div class="left-nav-section">
+        <span class="left-nav-title">Réussir le CELSA</span>
+        <a href="#lectures">Lectures incontournables</a>
+        <a href="#astuces">Conseils des admis</a>
+        <a href="#responsables">Responsables pédagogiques</a>
+      </div>
+
+      <div class="left-nav-section">
+        <span class="left-nav-title">Informations pratiques</span>
+        <a href="#resultats">Résultats &amp; témoignages</a>
+        <a href="#lieu">Lieu des cours</a>
+        <a href="#contact">Nous contacter</a>
+      </div>
+
+      <div class="left-nav-cta">
+        <p>Un projet CELSA ? Parlons-en — nous vous rappelons sous 24h.</p>
+        <a href="#contact">Prendre contact</a>
+        <a href="tel:0142305011" class="left-nav-tel">01 42 30 50 11</a>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+      <!-- PRÉSENTATION -->
+      <section class="content-section fi" id="presentation">
+        <div class="section-label"><div class="pipe"></div><span>Présentation</span></div>
+        <h2>Notre préparation <em>au CELSA</em></h2>
+
+        <div class="result-highlight">
+          <span class="rh-num">60%</span>
+          <div class="rh-text">
+            <strong>Admissibles — Session 2025</strong>
+            35% d'admis définitifs. Nos résultats lors de la dernière session.
+          </div>
+        </div>
+
+        <p>Le CELSA (Centre d'Études Littéraires et Scientifiques Appliquées) ou l'École des Hautes Études en Sciences de l'Information et de la Communication, rattaché à l'Université Paris IV-Sorbonne, forme des professionnels de la communication et du journalisme. Grande école reconnue par la Conférence des Grandes Écoles (CGE), le CELSA est le lieu où l'on pense et anticipe les transformations de la communication, du journalisme et des médias.</p>
+
+        <div class="conseil-box">
+          <p><strong>À vos agendas !</strong> Il est fortement conseillé aux étudiants de se renseigner en détail sur les modalités d'inscriptions pour ne rater aucune date. Consultez le calendrier et les procédures d'admission pour chaque section.</p>
+        </div>
+      </section>
+
+      <!-- FORMATS DE COURS -->
+      <section class="content-section fi" id="formats">
+        <div class="section-label"><div class="pipe"></div><span>Formats de cours</span></div>
+        <h2>Comment se <em>préparer ?</em></h2>
+        <p>Les candidats peuvent opter pour plusieurs formats de préparation selon leur niveau, leurs disponibilités et leurs objectifs :</p>
+
+        <div class="format-cards">
+          <div class="format-card" id="tutorat">
+            <span class="format-tag">Individuel</span>
+            <h4>Tutorat</h4>
+            <p>Une préparation individuelle, entièrement personnalisée selon votre profil et vos lacunes. Le professeur adapte son enseignement séance après séance.</p>
+          </div>
+          <div class="format-card" id="annuelle">
+            <span class="format-tag">Petit groupe · Samedis</span>
+            <h4>Prépa annuelle</h4>
+            <p>Des cours en petits groupes le samedi tout au long de l'année. Travail de fond sur la culture générale, la méthodologie et les épreuves spécifiques du CELSA.</p>
+          </div>
+          <div class="format-card" id="stages">
+            <span class="format-tag">Vacances scolaires</span>
+            <h4>Stages intensifs</h4>
+            <p>Des stages d'une semaine pendant les vacances scolaires pour un entraînement intensif aux épreuves. Idéal en complément d'une préparation annuelle.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LE CONCOURS -->
+      <section class="content-section fi" id="concours">
+        <div class="section-label"><div class="pipe"></div><span>Le concours</span></div>
+        <h2>La préparation <em>au concours</em></h2>
+        <p>Quels que soient la formation et le niveau visés, les concours d'entrée requièrent une bonne culture générale et une connaissance approfondie des problématiques liées aux sciences de la communication et des médias.</p>
+        <p>Notre préparation vise avant tout à aider les candidats à mettre en avant leur parcours et leurs compétences acquises. Elle vise bien entendu également à consolider leur méthode et à se familiariser avec l'esprit des épreuves du CELSA, à tous les niveaux d'entrée.</p>
+      </section>
+
+      <!-- LES FILIÈRES -->
+      <section class="content-section fi" id="filieres">
+        <div class="section-label"><div class="pipe"></div><span>Les filières</span></div>
+        <h2>Choisir <em>sa filière</em></h2>
+        <p>Le cursus propose quatre parcours distincts :</p>
+        <ul>
+          <li>Une entrée en Licence 3 pour acquérir des connaissances théoriques en sciences humaines et sociales, notamment en sciences de l'information et de la communication</li>
+          <li>Une entrée en Master 2 pour se spécialiser dans une filière professionnelle en communication (communication des entreprises, médias, marques ou ressources humaines)</li>
+          <li>Une entrée en Master journalisme</li>
+          <li>Une entrée en Master Recherche</li>
+        </ul>
+
+        <h3>La formation en communication</h3>
+        <p>En communication, cinq parcours sont proposés aux étudiants :</p>
+        <ul>
+          <li>Entreprises et institutions</li>
+          <li>Le Magistère (Management de la Communication et Culture)</li>
+          <li>Marque</li>
+          <li>Médias</li>
+          <li>Ressources humaines et conseil</li>
+        </ul>
+
+        <div class="conseil-box">
+          <p><strong>Quelle filière est faite pour moi ?</strong> Trop d'étudiants tentent le concours du CELSA sans s'informer sur les filières proposées. Nos responsables pédagogiques vous aident à identifier la meilleure option selon votre profil.</p>
+        </div>
+      </section>
+
+      <!-- RESPONSABLES PÉDAGOGIQUES -->
+      <section class="content-section fi" id="responsables">
+        <div class="section-label"><div class="pipe"></div><span>L'équipe</span></div>
+        <h2>Responsables <em>pédagogiques</em></h2>
+        <div class="prof-cards">
+          <div class="prof-card-mini">
+            <div class="prof-init-mini">E</div>
+            <div>
+              <h4>Émilie Zapalski</h4>
+              <p>Ancienne élève du CELSA<br/>Directrice d'une agence de communication</p>
+            </div>
+          </div>
+          <div class="prof-card-mini">
+            <div class="prof-init-mini">E</div>
+            <div>
+              <h4>Emmanuel Caquet</h4>
+              <p>Ancien élève du CELSA<br/>Agrégé de Lettres · Professeur en Khâgne</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RÉSULTATS & TÉMOIGNAGES -->
+      <section class="content-section fi" id="resultats">
+        <div class="section-label"><div class="pipe"></div><span>Résultats</span></div>
+        <h2>Ce que disent <em>nos étudiants</em></h2>
+        <div class="testi-box">
+          <blockquote>"L'Institut Tocqueville propose une approche globale de formation. Les responsables pédagogiques travaillent aux côtés de l'élève sur toutes les pistes possibles pour l'aider à atteindre son objectif : aide à la recherche de stage, séjours à l'étranger ou encore préparation à d'autres concours similaires au CELSA."</blockquote>
+          <cite>Étudiant admis au CELSA — Promotion 2025</cite>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="content-section fi" id="contact">
+        <div class="section-label"><div class="pipe"></div><span>Nous contacter</span></div>
+        <h2>Parlons de votre <em>projet CELSA.</em></h2>
+        <div class="contact-grid">
+          <div class="contact-form-box" id="form">
+            <p class="contact-intro">Décrivez-nous votre situation et nous vous rappelons sous 24h pour construire ensemble la préparation la plus adaptée.</p>
+            <div class="form-row">
+              <div class="fg"><label>Prénom</label><input type="text" placeholder="Jean" /></div>
+              <div class="fg"><label>Nom</label><input type="text" placeholder="Dupont" /></div>
+            </div>
+            <div class="fg"><label>Email</label><input type="email" placeholder="jean.dupont@email.com" /></div>
+            <div class="fg"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00" /></div>
+            <div class="fg">
+              <label>Filière visée</label>
+              <select>
+                <option>— Choisir —</option>
+                <option>Licence 3 Communication</option>
+                <option>Master 2 Communication</option>
+                <option>Master Journalisme</option>
+                <option>Master Recherche</option>
+                <option>Je ne sais pas encore</option>
+              </select>
+            </div>
+            <div class="fg"><label>Votre situation &amp; objectifs</label><textarea placeholder="Niveau actuel, concours visé, disponibilités…"></textarea></div>
+            <button class="btn-submit">Envoyer ma demande</button>
+            <p class="form-legal">Vos données ne sont utilisées qu'à des fins de contact et ne sont jamais cédées à des tiers.</p>
+          </div>
+          <div class="contact-aside">
+            <div class="contact-tel-block">
+              <div class="contact-tel-icon">📞</div>
+              <div>
+                <span class="contact-tel-label">Appel direct</span>
+                <a href="tel:0142305011" class="contact-tel-num">01 42 30 50 11</a>
+              </div>
+            </div>
+            <div class="contact-addr">
+              <strong>Cours Tocqueville</strong>
+              5, rue Vital · 75016 Paris<br />
+              Métro Passy (L6) · Trocadéro (L6/L9)<br />
+              RER C : Boulainvilliers
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- STICKY MOBILE -->
+  <div class="sticky-mobile">
+    <a href="tel:0142305011" class="sm-call">📞 01 42 30 50 11</a>
+    <a href="#form" class="sm-form">✉ Nous écrire</a>
+  </div>
+
+  <script>
+    function toggleMobileNav() {
+      const drawer = document.getElementById('mnd');
+      const btn = document.getElementById('mnd-btn');
+      const isOpen = drawer.classList.contains('open');
+      drawer.classList.toggle('open');
+      btn.classList.toggle('open');
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+      document.querySelectorAll('.sticky-mobile').forEach(el => {
+        el.style.display = isOpen ? '' : 'none';
+      });
+    }
+
+    // Fade in
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+    // Active left nav on scroll
+    const sections = document.querySelectorAll('.content-section[id]');
+    const navLinks = document.querySelectorAll('.left-nav a');
+    const scrollObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href') === '#' + e.target.id) a.classList.add('active');
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-10% 0px -60% 0px' });
+    sections.forEach(s => scrollObs.observe(s));
+  </script>
+</body>
+</html>
