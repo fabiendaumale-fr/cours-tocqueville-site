@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tocqueville Orientation — Conseil en orientation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bx:#6B1A2A; --bx-dk:#4A1020; --bx-lt:#8C2A3E;
+      --ivoire:#F7F3ED; --ivoire-dk:#EDE7DE;
+      --anthracite:#1C1C1C; --gris:#6B6B6B; --gris-cl:#D4CEC6;
+      --blanc:#FFFFFF; --t:0.3s ease;
+      --f-head:"Cormorant Garamond",Georgia,serif;
+      --f-body:"DM Sans",sans-serif;
+      --left-nav-w:280px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--ivoire);font-family:var(--f-body);font-size:16px;overflow-x:hidden;color:var(--anthracite);}
+
+    /* BACK BAR */
+    .back-bar{background:var(--anthracite);padding:0 48px;height:40px;display:flex;align-items:center;justify-content:space-between;}
+    .back-link{font-family:var(--f-body);font-size:0.68rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color var(--t);}
+    .back-link:hover{color:var(--blanc);}
+    .back-bar-right{display:flex;gap:24px;}
+    .back-bar-right a{font-family:var(--f-body);font-size:0.65rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color var(--t);}
+    .back-bar-right a:hover{color:var(--blanc);}
+
+    /* PRODUCT HEADER */
+    .product-header{background:var(--bx);padding:56px 48px 52px;position:relative;overflow:hidden;}
+    .product-header::before{content:"ORIENTATION";position:absolute;right:-20px;bottom:-40px;font-family:var(--f-head);font-size:7rem;font-weight:700;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;letter-spacing:-0.02em;}
+    .product-header-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;gap:48px;}
+    .product-logo-link{display:inline-block;margin-bottom:20px;}
+    .product-logo{height:52px;width:auto;filter:brightness(0) invert(1);opacity:0.9;}
+    .product-title{font-family:var(--f-head);font-size:clamp(2.4rem,4vw,3.6rem);font-weight:300;color:var(--blanc);line-height:1.08;margin-bottom:16px;}
+    .product-title em{font-style:italic;font-weight:400;}
+    .product-subtitle{font-family:var(--f-body);font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.75;max-width:580px;}
+    .product-header-cta{display:flex;flex-direction:column;gap:12px;flex-shrink:0;}
+    .btn-header-cta{display:inline-block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;text-align:center;padding:13px 22px;transition:background var(--t);white-space:nowrap;}
+    .btn-header-cta:hover{background:var(--ivoire);}
+    .btn-header-outline{background:transparent;border:1px solid rgba(255,255,255,0.35);color:rgba(255,255,255,0.8);}
+    .btn-header-outline:hover{background:rgba(255,255,255,0.08);color:var(--blanc);}
+
+    /* MOBILE MENU BAR */
+    .mobile-menu-bar{display:none;background:var(--anthracite);border-bottom:1px solid rgba(255,255,255,0.08);position:sticky;top:0;z-index:90;}
+    .mobile-menu-btn{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;cursor:pointer;padding:14px 20px;font-family:var(--f-body);font-size:0.85rem;font-weight:400;color:rgba(255,255,255,0.75);}
+    .mobile-menu-btn-left{display:flex;align-items:center;gap:10px;}
+    .mmb-chevron{font-size:0.65rem;color:rgba(255,255,255,0.35);transition:transform var(--t);}
+    .mobile-menu-btn.open .mmb-chevron{transform:rotate(180deg);}
+
+    /* MOBILE NAV DRAWER */
+    .mobile-nav-drawer{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--anthracite);z-index:200;overflow-y:auto;transform:translateX(-100%);transition:transform 0.3s ease;}
+    .mobile-nav-drawer.open{transform:translateX(0);}
+    .mnd-header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .mnd-header-title{font-family:var(--f-body);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+    .mnd-close{background:none;border:none;cursor:pointer;font-family:var(--f-body);font-size:0.75rem;color:rgba(255,255,255,0.5);}
+    .mnd-body{padding:24px 20px;}
+    .mnd-section{margin-bottom:28px;}
+    .mnd-section-title{display:block;font-family:var(--f-body);font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:10px;}
+    .mnd-link{display:block;font-family:var(--f-body);font-size:1rem;font-weight:300;color:rgba(255,255,255,0.65);text-decoration:none;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);transition:color var(--t);}
+    .mnd-link:hover{color:var(--blanc);}
+    .mnd-link.active{color:var(--blanc);}
+    .mnd-cta-box{background:var(--bx);padding:20px;margin-top:8px;}
+    .mnd-cta-box p{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:14px;}
+    .mnd-cta-btn{display:block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.75rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;padding:11px 16px;text-align:center;margin-bottom:10px;}
+    .mnd-tel{display:block;font-family:var(--f-head);font-size:1rem;color:rgba(255,255,255,0.6);text-decoration:none;text-align:center;}
+
+    /* PAGE BODY */
+    .page-body{display:grid;grid-template-columns:var(--left-nav-w) 1fr;max-width:1280px;margin:0 auto;min-height:calc(100vh - 40px - 164px);}
+
+    /* LEFT NAV */
+    .left-nav{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--anthracite);padding:40px 0;}
+    .left-nav-section{margin-bottom:28px;}
+    .left-nav-title{display:block;font-family:var(--f-body);font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:0 28px;margin-bottom:8px;}
+    .left-nav a{display:block;font-family:var(--f-body);font-size:0.88rem;font-weight:300;color:rgba(255,255,255,0.55);text-decoration:none;padding:9px 28px;border-left:3px solid transparent;transition:all var(--t);}
+    .left-nav a:hover{color:var(--blanc);background:rgba(255,255,255,0.03);}
+    .left-nav a.active{color:var(--blanc);border-left-color:var(--bx);background:rgba(255,255,255,0.04);}
+    .left-nav-sep{height:1px;background:rgba(255,255,255,0.07);margin:16px 28px;}
+    .left-nav-cta{margin:28px 20px 0;background:var(--bx);padding:20px;}
+    .left-nav-cta p{font-family:var(--f-body);font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.6;margin-bottom:14px;}
+    .left-nav-cta a{display:block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.72rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;padding:10px 14px;text-align:center;margin-bottom:10px;border:none;transition:background var(--t);}
+    .left-nav-cta a:hover{background:var(--ivoire);border-left:none;}
+    .left-nav-tel{display:block;font-family:var(--f-head);font-size:1rem;color:rgba(255,255,255,0.55)!important;text-decoration:none;text-align:center;padding:0!important;border:none!important;background:none!important;}
+
+    /* CONTENT */
+    .content{padding:0;}
+    .content-section{padding:56px 64px;border-bottom:1px solid var(--gris-cl);}
+    .content-section:last-child{border-bottom:none;}
+    .section-label{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+    .section-label .pipe{width:3px;height:18px;background:var(--bx);flex-shrink:0;}
+    .section-label span{font-family:var(--f-body);font-size:0.65rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bx);}
+    .content-section h2{font-family:var(--f-head);font-size:clamp(1.8rem,2.4vw,2.5rem);font-weight:300;line-height:1.15;color:var(--anthracite);margin-bottom:24px;}
+    .content-section h2 em{font-style:italic;font-weight:400;color:var(--bx);}
+    .content-section h3{font-family:var(--f-head);font-size:1.4rem;font-weight:400;color:var(--anthracite);margin:32px 0 10px;}
+    .content-section p{font-family:var(--f-body);font-size:0.9rem;font-weight:300;color:var(--gris);line-height:1.85;margin-bottom:16px;max-width:680px;}
+    .content-section p strong{font-weight:500;color:var(--anthracite);}
+    .content-section a{color:var(--bx);text-decoration:none;border-bottom:1px solid rgba(107,26,42,0.25);transition:border-color var(--t);}
+    .content-section a:hover{border-bottom-color:var(--bx);}
+
+    /* CITATION */
+    .citation-block{border-left:4px solid var(--bx);padding:20px 28px;margin:24px 0;max-width:680px;background:var(--blanc);}
+    .citation-block p{font-family:var(--f-head);font-size:1.15rem;font-style:italic;font-weight:300;line-height:1.7;color:var(--anthracite);margin:0;}
+
+    /* PROFIL CARDS */
+    .profil-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:28px;max-width:680px;}
+    .profil-card{background:var(--blanc);border:1px solid var(--gris-cl);padding:26px 22px;position:relative;}
+    .profil-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--bx);}
+    .profil-card h4{font-family:var(--f-head);font-size:1.05rem;font-weight:400;color:var(--anthracite);margin-bottom:10px;}
+    .profil-card p{font-family:var(--f-body);font-size:0.83rem;font-weight:300;color:var(--gris);line-height:1.7;margin:0;}
+
+    /* CONSEIL BOX */
+    .conseil-box{background:var(--ivoire-dk);border-left:3px solid var(--bx);padding:18px 22px;margin:24px 0;max-width:680px;}
+    .conseil-box p{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:var(--anthracite);line-height:1.7;margin:0;}
+    .conseil-box p strong{font-weight:500;}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 280px;gap:48px;margin-top:8px;}
+    .contact-intro{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:var(--gris);line-height:1.7;margin-bottom:24px;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+    .fg label{font-family:var(--f-body);font-size:0.72rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--anthracite);}
+    .fg input,.fg select,.fg textarea{font-family:var(--f-body);font-size:0.9rem;font-weight:300;border:1px solid var(--gris-cl);background:var(--blanc);padding:10px 14px;color:var(--anthracite);transition:border-color var(--t);outline:none;}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--bx);}
+    .fg textarea{min-height:120px;resize:vertical;}
+    .btn-submit{background:var(--bx);color:var(--blanc);font-family:var(--f-body);font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;padding:14px 28px;transition:background var(--t);width:100%;}
+    .btn-submit:hover{background:var(--bx-lt);}
+    .form-legal{font-family:var(--f-body);font-size:0.72rem;font-weight:300;color:var(--gris);line-height:1.6;margin-top:12px;}
+    .contact-aside{padding-top:8px;}
+    .contact-tel-block{display:flex;gap:16px;align-items:flex-start;background:var(--ivoire-dk);padding:20px;margin-bottom:20px;}
+    .contact-tel-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
+    .contact-tel-label{display:block;font-family:var(--f-body);font-size:0.65rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gris);margin-bottom:4px;}
+    .contact-tel-num{display:block;font-family:var(--f-head);font-size:1.3rem;font-weight:300;color:var(--bx);text-decoration:none;border:none!important;}
+    .contact-addr{font-family:var(--f-body);font-size:0.82rem;font-weight:300;color:var(--gris);line-height:1.8;}
+    .contact-addr strong{display:block;font-weight:500;color:var(--anthracite);margin-bottom:4px;}
+
+    /* FADE IN */
+    .fi{opacity:0;transform:translateY(18px);transition:opacity 0.55s ease,transform 0.55s ease;}
+    .fi.v{opacity:1;transform:translateY(0);}
+
+    /* STICKY MOBILE */
+    .sticky-mobile{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;grid-template-columns:1fr 1fr;}
+    .sm-call{background:var(--anthracite);color:var(--blanc);font-family:var(--f-body);font-size:0.8rem;font-weight:400;text-decoration:none;padding:16px;text-align:center;letter-spacing:0.04em;}
+    .sm-form{background:var(--bx);color:var(--blanc);font-family:var(--f-body);font-size:0.8rem;font-weight:400;text-decoration:none;padding:16px;text-align:center;letter-spacing:0.04em;}
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .back-bar{padding:0 20px;}
+      .back-bar-right{display:none;}
+      .product-header{padding:36px 20px 32px;}
+      .product-header-inner{grid-template-columns:1fr;gap:24px;}
+      .product-header-cta{flex-direction:row;flex-wrap:wrap;}
+      .page-body{grid-template-columns:1fr;}
+      .left-nav{display:none;}
+      .mobile-menu-bar{display:block;}
+      .mobile-nav-drawer{display:block;}
+      .content-section{padding:40px 24px;}
+      .contact-grid{grid-template-columns:1fr;}
+      .form-row{grid-template-columns:1fr;}
+      .profil-cards{grid-template-columns:1fr;}
+      .sticky-mobile{display:grid;}
+      body{padding-bottom:56px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- RETOUR TOCQUEVILLE -->
+  <div class="back-bar">
+    <a href="index.html" class="back-link">&#8592; Cours Tocqueville</a>
+    <div class="back-bar-right">
+      <a href="index.html">Accueil</a>
+      <a href="#">Orientation</a>
+    </div>
+  </div>
+
+  <!-- PRODUCT HEADER -->
+  <header class="product-header">
+    <div class="product-header-inner">
+      <div>
+        <a href="index.html" class="product-logo-link">
+          <img src="https://fabiendaumale-fr.github.io/cours-tocqueville-site/logo-to.png" alt="Tocqueville Orientation" class="product-logo" />
+        </a>
+        <h1 class="product-title">Tocqueville <em>Orientation</em></h1>
+        <p class="product-subtitle">
+          Ne pas savoir ce qu&rsquo;on veut faire &agrave; 17 ans n&rsquo;est pas un &eacute;chec &mdash; c&rsquo;est la situation de la grande majorit&eacute; des lyc&eacute;ens. Nous vous accompagnons dans cette d&eacute;marche fondamentale.
+        </p>
+      </div>
+      <div class="product-header-cta">
+        <a href="tel:0142305011" class="btn-header-cta">&#128222; 01 42 30 50 11 &mdash; Nous contacter</a>
+        <a href="#form" class="btn-header-cta btn-header-outline">&#9993; Nous &eacute;crire</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU BUTTON -->
+  <div class="mobile-menu-bar">
+    <button class="mobile-menu-btn" id="mnd-btn" onclick="toggleMobileNav()">
+      <span class="mobile-menu-btn-left">
+        <span class="mobile-menu-btn-icon">&#8801;</span>
+        Menu &mdash; Orientation
+      </span>
+      <span class="mmb-chevron">&#9660;</span>
+    </button>
+  </div>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div class="mobile-nav-drawer" id="mnd">
+    <div class="mnd-header">
+      <span class="mnd-header-title">Navigation &mdash; Orientation</span>
+      <button class="mnd-close" onclick="toggleMobileNav()">&#10005; Fermer</button>
+    </div>
+    <div class="mnd-body">
+      <div class="mnd-section">
+        <span class="mnd-section-title">Tocqueville Orientation</span>
+        <a href="orientation-conseil.html" class="mnd-link active">Pr&eacute;sentation</a>
+      </div>
+      <div class="mnd-section">
+        <span class="mnd-section-title">Admissions France</span>
+        <a href="orientation-master.html" class="mnd-link">Master &amp; R&eacute;orientation</a>
+        <a href="#" class="mnd-link">Parcoursup</a>
+        <a href="#" class="mnd-link">&Eacute;coles s&eacute;lectives</a>
+      </div>
+      <div class="mnd-section">
+        <span class="mnd-section-title">Admissions Internationales</span>
+        <a href="orientation-usa.html" class="mnd-link">&Eacute;tudes aux &Eacute;tats-Unis</a>
+        <a href="orientation-international.html" class="mnd-link">UK, Canada &amp; autres pays</a>
+      </div>
+      <div class="mnd-section">
+        <span class="mnd-section-title">Tests</span>
+        <a href="#" class="mnd-link">TAGE MAGE</a>
+        <a href="#" class="mnd-link">GMAT</a>
+        <a href="#" class="mnd-link">SAT / TOEFL / IELTS</a>
+      </div>
+      <div class="mnd-cta-box">
+        <p>Un projet d&rsquo;orientation&nbsp;? Parlons-en &mdash; nous vous rappelons sous 24h.</p>
+        <a href="#contact" class="mnd-cta-btn" onclick="toggleMobileNav()">Prendre contact</a>
+        <a href="tel:0142305011" class="mnd-tel">01 42 30 50 11</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="page-body">
+
+    <!-- LEFT NAV -->
+    <aside class="left-nav">
+      <div class="left-nav-section">
+        <span class="left-nav-title">Tocqueville Orientation</span>
+        <a href="orientation-conseil.html" class="active">Pr&eacute;sentation</a>
+      </div>
+      <div class="left-nav-sep"></div>
+      <div class="left-nav-section">
+        <span class="left-nav-title">Admissions France</span>
+        <a href="orientation-master.html">Master &amp; R&eacute;orientation</a>
+        <a href="#">Parcoursup</a>
+        <a href="#">Grandes &eacute;coles s&eacute;lectives</a>
+      </div>
+      <div class="left-nav-sep"></div>
+      <div class="left-nav-section">
+        <span class="left-nav-title">Admissions Internationales</span>
+        <a href="orientation-usa.html">&Eacute;tudes aux &Eacute;tats-Unis</a>
+        <a href="orientation-international.html">UK, Canada &amp; autres pays</a>
+      </div>
+      <div class="left-nav-sep"></div>
+      <div class="left-nav-section">
+        <span class="left-nav-title">Tests</span>
+        <a href="#">TAGE MAGE</a>
+        <a href="#">GMAT</a>
+        <a href="#">SAT / TOEFL / IELTS</a>
+      </div>
+      <div class="left-nav-cta">
+        <p>Un projet d&rsquo;orientation&nbsp;? Parlons-en &mdash; nous vous rappelons sous 24h.</p>
+        <a href="#contact">Prendre contact</a>
+        <a href="tel:0142305011" class="left-nav-tel">01 42 30 50 11</a>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+      <section class="content-section fi" id="presentation">
+        <div class="section-label"><div class="pipe"></div><span>Tocqueville Orientation</span></div>
+        <h2>B&acirc;tir un projet d&rsquo;avenir, <em>avec m&eacute;thode.</em></h2>
+
+        <p>Bâtir un projet pour l'avenir, faire rimer ses aspirations, ses aptitudes et ses talents avec une réalité socio-économique de plus en plus changeante et complexe n'est pas chose aisée pour les élèves d'aujourd'hui. Ne pas savoir ce qu'on veut faire à 17 ans n'est pas un échec — c'est la situation de la grande majorité des lycéens. Tocqueville Orientation vous accompagne dans cette démarche fondamentale.</p>
+
+        <div class="citation-block">
+          <p>« Choisissez un travail que vous aimez et vous n'aurez pas à travailler un seul jour de votre vie. » — Confucius</p>
+        </div>
+
+        <p>Comment choisir un travail que l'on aime ? Sait-on à 17 ans, 18 ans ou même 20 ans quel travail l'on va aimer ? Les parents d'aujourd'hui rêvent de voir leurs enfants épanouis dans leurs études, plus tard dans leur carrière professionnelle, et peut-être plus encore dans leur vie.</p>
+
+        <p>Les possibilités d'études se sont multipliées ces dernières années, les procédures d'accès sont de plus en plus variées et souvent opaques. Parcoursup a rendu le processus plus visible — mais pas nécessairement plus lisible. Le système scolaire tel qu'il est conçu aujourd'hui ne favorise pas la connaissance de soi, le questionnement sur ses goûts, ses aspirations, ses projets — et nombreux sont les élèves, même brillants scolairement, qui sont véritablement désemparés quand on les interroge sur leur avenir.</p>
+      </section>
+
+      <section class="content-section fi" id="commencer-tot">
+        <div class="section-label"><div class="pipe"></div><span>Timing</span></div>
+        <h2>Commencer t&ocirc;t&nbsp;: <em>un avantage d&eacute;cisif.</em></h2>
+
+        <p>Un accompagnement en orientation peut commencer dès la classe de Seconde — et c'est souvent le meilleur moment. Se donner du temps permet d'explorer sereinement, de mûrir, d'éviter la fébrilité de la Terminale.</p>
+
+        <p>C'est aussi une préparation au <strong>Grand oral du baccalauréat</strong> : depuis la réforme, les élèves doivent présenter leur projet d'orientation devant un jury lors de cette épreuve. Un projet bien construit, bien articulé, fait une vraie différence.</p>
+
+        <div class="conseil-box">
+          <p><strong>Les procédures d'admission les plus sélectives — Oxford, Cambridge, Sciences Po — ferment très tôt dans l'année de Terminale.</strong> Anticiper est souvent décisif.</p>
+        </div>
+      </section>
+
+      <section class="content-section fi" id="profils">
+        <div class="section-label"><div class="pipe"></div><span>Notre accompagnement</span></div>
+        <h2>Un accompagnement <em>adapt&eacute; &agrave; votre situation.</em></h2>
+
+        <div class="profil-cards">
+          <div class="profil-card">
+            <h4>Au lycée — Seconde ou Première</h4>
+            <p>Se préoccuper de son orientation dès la Seconde ou la Première, c'est échapper à la fébrilité qui s'empare d'un grand nombre d'élèves de Terminale. On dispose ainsi du temps nécessaire pour explorer, réfléchir, mûrir — pour laisser la place à la maturation, au questionnement autour de l'identité, des valeurs, des désirs. De cette démarche émergent tôt ou tard des directions, provisoires mais suffisantes pour avancer et tracer son chemin pas à pas.</p>
+          </div>
+          <div class="profil-card">
+            <h4>En Terminale</h4>
+            <p>L'année de Terminale est éprouvante : préparer le baccalauréat, réfléchir à son avenir, préparer des concours, des tests, des dossiers — tout ceci génère une bonne dose de stress. Parcoursup et la diversification des procédures viennent ajouter de la confusion et de l'angoisse. Un temps de réflexion guidé par un conseiller en orientation est un bon moyen de vivre cette année le plus sereinement possible et d'optimiser ses choix pour l'avenir.</p>
+          </div>
+          <div class="profil-card">
+            <h4>En études supérieures</h4>
+            <p>Une réorientation en cours d'études ne doit pas être vécue comme un échec. Elle est au contraire la preuve d'une maturation, une façon d'enrichir un parcours, d'en faire un cheminement original et unique. Notre accompagnement commence par un bilan de ce qui a été entrepris : quels choix avez-vous faits, pour quelles raisons, qu'en avez-vous tiré ? Nous vous aidons ensuite à formuler un nouveau projet et à identifier la meilleure stratégie pour le concrétiser.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section fi" id="suite">
+        <div class="section-label"><div class="pipe"></div><span>De la r&eacute;flexion &agrave; l&rsquo;admission</span></div>
+        <h2>Un accompagnement qui <em>ouvre sur la suite.</em></h2>
+
+        <p>Une fois le projet défini, notre accompagnement peut naturellement se prolonger vers la concrétisation : constitution du dossier Parcoursup, candidatures aux écoles sélectives hors Parcoursup, ou admissions à l'étranger. Nous accompagnons nos élèves de bout en bout — de la réflexion à l'admission.</p>
+
+        <p>Chaque élève a un profil, un parcours et des aspirations différentes. Notre accompagnement est construit sur mesure — pas sur la base d'un programme standard.</p>
+
+        <p style="font-style:italic;color:var(--gris);">Tarifs et disponibilités : nous consulter.</p>
+      </section>
+
+      <section class="content-section fi" id="contact">
+        <div class="section-label"><div class="pipe"></div><span>Nous contacter</span></div>
+        <h2>Parlons de votre <em>projet.</em></h2>
+        <div class="contact-grid">
+          <div class="contact-form-box" id="form">
+            <p class="contact-intro">D&eacute;crivez-nous votre situation et nous vous rappelons sous 24h pour construire ensemble la solution la plus adapt&eacute;e.</p>
+            <div class="form-row">
+              <div class="fg"><label>Pr&eacute;nom</label><input type="text" placeholder="Jean" /></div>
+              <div class="fg"><label>Nom</label><input type="text" placeholder="Dupont" /></div>
+            </div>
+            <div class="fg"><label>Email</label><input type="email" placeholder="jean.dupont@email.com" /></div>
+            <div class="fg"><label>T&eacute;l&eacute;phone</label><input type="tel" placeholder="06 00 00 00 00" /></div>
+            <div class="fg">
+              <label>Votre situation</label>
+              <select>
+                <option>&mdash; Choisir &mdash;</option>
+                <option>Lyc&eacute;en en Seconde ou Premi&egrave;re</option>
+                <option>Lyc&eacute;en en Terminale</option>
+                <option>En &eacute;tudes sup&eacute;rieures &mdash; r&eacute;orientation</option>
+                <option>Parent d&rsquo;un lyc&eacute;en</option>
+                <option>Autre situation</option>
+              </select>
+            </div>
+            <div class="fg"><label>Votre projet &amp; vos questions</label><textarea placeholder="Niveau actuel, aspirations, questions, contraintes&hellip;"></textarea></div>
+            <button class="btn-submit">Envoyer ma demande</button>
+            <p class="form-legal">Vos donn&eacute;es ne sont utilis&eacute;es qu&rsquo;&agrave; des fins de contact et ne sont jamais c&eacute;d&eacute;es &agrave; des tiers.</p>
+          </div>
+          <div class="contact-aside">
+            <div class="contact-tel-block">
+              <div class="contact-tel-icon">&#128222;</div>
+              <div>
+                <span class="contact-tel-label">Appel direct</span>
+                <a href="tel:0142305011" class="contact-tel-num">01 42 30 50 11</a>
+              </div>
+            </div>
+            <div class="contact-addr">
+              <strong>Cours Tocqueville</strong>
+              5, rue Vital &middot; 75016 Paris<br />
+              M&eacute;tro Passy (L6) &middot; Trocad&eacute;ro (L6/L9)<br />
+              RER C&nbsp;: Boulainvilliers
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- STICKY MOBILE -->
+  <div class="sticky-mobile">
+    <a href="tel:0142305011" class="sm-call">&#128222; 01 42 30 50 11</a>
+    <a href="#form" class="sm-form">&#9993; Nous &eacute;crire</a>
+  </div>
+
+  <script>
+    function toggleMobileNav() {
+      const drawer = document.getElementById("mnd");
+      const btn = document.getElementById("mnd-btn");
+      const isOpen = drawer.classList.contains("open");
+      drawer.classList.toggle("open");
+      btn.classList.toggle("open");
+      document.body.style.overflow = isOpen ? "" : "hidden";
+      document.querySelectorAll(".sticky-mobile").forEach(el => {
+        el.style.display = isOpen ? "" : "none";
+      });
+    }
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("v"); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll(".fi").forEach(el => obs.observe(el));
+    const sections = document.querySelectorAll(".content-section[id]");
+    const navLinks = document.querySelectorAll(".left-nav a");
+    const scrollObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => {
+            a.classList.remove("active");
+            if (a.getAttribute("href") === "#" + e.target.id) a.classList.add("active");
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: "-10% 0px -60% 0px" });
+    sections.forEach(s => scrollObs.observe(s));
+  </script>
+</body>
+</html>
