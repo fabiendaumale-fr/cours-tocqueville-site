@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master &amp; Réorientation — Cours Tocqueville</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bx:#6B1A2A; --bx-dk:#4A1020; --bx-lt:#8C2A3E;
+      --ivoire:#F7F3ED; --ivoire-dk:#EDE7DE;
+      --anthracite:#1C1C1C; --gris:#6B6B6B; --gris-cl:#D4CEC6;
+      --blanc:#FFFFFF; --t:0.3s ease;
+      --f-head:"Cormorant Garamond",Georgia,serif;
+      --f-body:"DM Sans",sans-serif;
+      --left-nav-w:260px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--ivoire);font-family:var(--f-body);font-size:16px;overflow-x:hidden;color:var(--anthracite);}
+
+    /* BACK BAR */
+    .back-bar{background:var(--anthracite);padding:0 48px;height:40px;display:flex;align-items:center;justify-content:space-between;}
+    .back-link{font-family:var(--f-body);font-size:0.68rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color var(--t);}
+    .back-link:hover{color:var(--blanc);}
+    .back-bar-right{display:flex;gap:24px;}
+    .back-bar-right a{font-family:var(--f-body);font-size:0.65rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color var(--t);}
+    .back-bar-right a:hover{color:var(--blanc);}
+
+    /* PRODUCT HEADER */
+    .product-header{background:var(--bx);padding:56px 48px 52px;position:relative;overflow:hidden;}
+    .product-header::before{content:"MASTER";position:absolute;right:-20px;bottom:-40px;font-family:var(--f-head);font-size:10rem;font-weight:700;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;letter-spacing:-0.02em;}
+    .product-header-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;gap:48px;}
+    .product-logo-link{display:inline-block;margin-bottom:20px;}
+    .product-logo{height:52px;width:auto;filter:brightness(0) invert(1);opacity:0.9;}
+    .product-title{font-family:var(--f-head);font-size:clamp(2.4rem,4vw,3.6rem);font-weight:300;color:var(--blanc);line-height:1.08;margin-bottom:16px;}
+    .product-title em{font-style:italic;font-weight:400;}
+    .product-subtitle{font-family:var(--f-body);font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.75;max-width:580px;}
+    .product-header-cta{display:flex;flex-direction:column;gap:12px;flex-shrink:0;}
+    .btn-header-cta{display:inline-block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;text-align:center;padding:13px 22px;transition:background var(--t);white-space:nowrap;}
+    .btn-header-cta:hover{background:var(--ivoire);}
+    .btn-header-outline{background:transparent;border:1px solid rgba(255,255,255,0.35);color:rgba(255,255,255,0.8);}
+    .btn-header-outline:hover{background:rgba(255,255,255,0.08);color:var(--blanc);}
+
+    /* MOBILE MENU BAR */
+    .mobile-menu-bar{display:none;background:var(--anthracite);border-bottom:1px solid rgba(255,255,255,0.08);position:sticky;top:0;z-index:90;}
+    .mobile-menu-btn{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;cursor:pointer;padding:14px 20px;font-family:var(--f-body);font-size:0.85rem;font-weight:400;color:rgba(255,255,255,0.75);}
+    .mobile-menu-btn-left{display:flex;align-items:center;gap:10px;}
+    .mmb-chevron{font-size:0.65rem;color:rgba(255,255,255,0.35);transition:transform var(--t);}
+    .mobile-menu-btn.open .mmb-chevron{transform:rotate(180deg);}
+
+    /* MOBILE NAV DRAWER */
+    .mobile-nav-drawer{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--anthracite);z-index:200;overflow-y:auto;transform:translateX(-100%);transition:transform 0.3s ease;}
+    .mobile-nav-drawer.open{transform:translateX(0);}
+    .mnd-header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .mnd-header-title{font-family:var(--f-body);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+    .mnd-close{background:none;border:none;cursor:pointer;font-family:var(--f-body);font-size:0.75rem;color:rgba(255,255,255,0.5);}
+    .mnd-body{padding:24px 20px;}
+    .mnd-section{margin-bottom:28px;}
+    .mnd-section-title{display:block;font-family:var(--f-body);font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:10px;}
+    .mnd-link{display:block;font-family:var(--f-body);font-size:1rem;font-weight:300;color:rgba(255,255,255,0.65);text-decoration:none;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);transition:color var(--t);}
+    .mnd-link:hover{color:var(--blanc);}
+    .mnd-cta-box{background:var(--bx);padding:20px;margin-top:8px;}
+    .mnd-cta-box p{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:14px;}
+    .mnd-cta-btn{display:block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.75rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;padding:11px 16px;text-align:center;margin-bottom:10px;}
+    .mnd-tel{display:block;font-family:var(--f-head);font-size:1rem;color:rgba(255,255,255,0.6);text-decoration:none;text-align:center;}
+
+    /* PAGE BODY */
+    .page-body{display:grid;grid-template-columns:var(--left-nav-w) 1fr;max-width:1280px;margin:0 auto;min-height:calc(100vh - 40px - 164px);}
+
+    /* LEFT NAV */
+    .left-nav{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--anthracite);padding:40px 0;}
+    .left-nav-section{margin-bottom:32px;}
+    .left-nav-title{display:block;font-family:var(--f-body);font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:0 28px;margin-bottom:8px;}
+    .left-nav a{display:block;font-family:var(--f-body);font-size:0.88rem;font-weight:300;color:rgba(255,255,255,0.55);text-decoration:none;padding:9px 28px;border-left:3px solid transparent;transition:all var(--t);}
+    .left-nav a:hover{color:var(--blanc);background:rgba(255,255,255,0.03);}
+    .left-nav a.active{color:var(--blanc);border-left-color:var(--bx);background:rgba(255,255,255,0.04);}
+    .left-nav-cta{margin:28px 20px 0;background:var(--bx);padding:20px;}
+    .left-nav-cta p{font-family:var(--f-body);font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.6;margin-bottom:14px;}
+    .left-nav-cta a{display:block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.72rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;padding:10px 14px;text-align:center;margin-bottom:10px;border:none;transition:background var(--t);}
+    .left-nav-cta a:hover{background:var(--ivoire);border-left:none;}
+    .left-nav-tel{display:block;font-family:var(--f-head);font-size:1rem;color:rgba(255,255,255,0.55)!important;text-decoration:none;text-align:center;padding:0!important;border:none!important;background:none!important;}
+
+    /* CONTENT */
+    .content{padding:0;}
+    .content-section{padding:56px 64px;border-bottom:1px solid var(--gris-cl);}
+    .content-section:last-child{border-bottom:none;}
+    .section-label{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+    .section-label .pipe{width:3px;height:18px;background:var(--bx);flex-shrink:0;}
+    .section-label span{font-family:var(--f-body);font-size:0.65rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bx);}
+    .content-section h2{font-family:var(--f-head);font-size:clamp(1.8rem,2.4vw,2.5rem);font-weight:300;line-height:1.15;color:var(--anthracite);margin-bottom:24px;}
+    .content-section h2 em{font-style:italic;font-weight:400;color:var(--bx);}
+    .content-section p{font-family:var(--f-body);font-size:0.9rem;font-weight:300;color:var(--gris);line-height:1.85;margin-bottom:16px;max-width:680px;}
+    .content-section p strong{font-weight:500;color:var(--anthracite);}
+    .content-section ul{margin:0 0 20px 0;padding-left:0;list-style:none;max-width:680px;}
+    .content-section ul li{font-family:var(--f-body);font-size:0.9rem;font-weight:300;color:var(--gris);line-height:1.75;padding:7px 0 7px 18px;position:relative;border-bottom:1px solid rgba(0,0,0,0.05);}
+    .content-section ul li::before{content:"—";position:absolute;left:0;color:var(--bx);font-weight:400;}
+
+    /* CONSEIL BOX */
+    .conseil-box{background:var(--ivoire-dk);border-left:3px solid var(--bx);padding:18px 22px;margin:24px 0;max-width:680px;}
+    .conseil-box p{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:var(--anthracite);line-height:1.7;margin:0;}
+    .conseil-box p strong{font-weight:500;}
+
+    /* STEPS */
+    .steps-list{margin:24px 0;max-width:680px;}
+    .step-item{display:flex;gap:20px;padding:18px 0;border-bottom:1px solid var(--gris-cl);}
+    .step-item:last-child{border-bottom:none;}
+    .step-num{font-family:var(--f-head);font-size:1.2rem;font-weight:300;color:var(--bx);flex-shrink:0;width:28px;padding-top:2px;}
+    .step-body h4{font-family:var(--f-body);font-size:0.88rem;font-weight:500;color:var(--anthracite);margin-bottom:4px;}
+    .step-body p{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:var(--gris);line-height:1.7;margin:0;}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 280px;gap:48px;margin-top:8px;}
+    .contact-intro{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:var(--gris);line-height:1.7;margin-bottom:24px;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+    .fg label{font-family:var(--f-body);font-size:0.72rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--anthracite);}
+    .fg input,.fg select,.fg textarea{font-family:var(--f-body);font-size:0.9rem;font-weight:300;border:1px solid var(--gris-cl);background:var(--blanc);padding:10px 14px;color:var(--anthracite);transition:border-color var(--t);outline:none;}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--bx);}
+    .fg textarea{min-height:120px;resize:vertical;}
+    .btn-submit{background:var(--bx);color:var(--blanc);font-family:var(--f-body);font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;padding:14px 28px;transition:background var(--t);width:100%;}
+    .btn-submit:hover{background:var(--bx-lt);}
+    .form-legal{font-family:var(--f-body);font-size:0.72rem;font-weight:300;color:var(--gris);line-height:1.6;margin-top:12px;}
+    .contact-aside{padding-top:8px;}
+    .contact-tel-block{display:flex;gap:16px;align-items:flex-start;background:var(--ivoire-dk);padding:20px;margin-bottom:20px;}
+    .contact-tel-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
+    .contact-tel-label{display:block;font-family:var(--f-body);font-size:0.65rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gris);margin-bottom:4px;}
+    .contact-tel-num{display:block;font-family:var(--f-head);font-size:1.3rem;font-weight:300;color:var(--bx);text-decoration:none;}
+    .contact-addr{font-family:var(--f-body);font-size:0.82rem;font-weight:300;color:var(--gris);line-height:1.8;}
+    .contact-addr strong{display:block;font-weight:500;color:var(--anthracite);margin-bottom:4px;}
+
+    /* FADE IN */
+    .fi{opacity:0;transform:translateY(18px);transition:opacity 0.55s ease,transform 0.55s ease;}
+    .fi.v{opacity:1;transform:translateY(0);}
+
+    /* STICKY MOBILE */
+    .sticky-mobile{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;grid-template-columns:1fr 1fr;}
+    .sm-call{background:var(--anthracite);color:var(--blanc);font-family:var(--f-body);font-size:0.8rem;font-weight:400;text-decoration:none;padding:16px;text-align:center;letter-spacing:0.04em;}
+    .sm-form{background:var(--bx);color:var(--blanc);font-family:var(--f-body);font-size:0.8rem;font-weight:400;text-decoration:none;padding:16px;text-align:center;letter-spacing:0.04em;}
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .back-bar{padding:0 20px;}
+      .back-bar-right{display:none;}
+      .product-header{padding:36px 20px 32px;}
+      .product-header-inner{grid-template-columns:1fr;gap:24px;}
+      .product-header-cta{flex-direction:row;flex-wrap:wrap;}
+      .page-body{grid-template-columns:1fr;}
+      .left-nav{display:none;}
+      .mobile-menu-bar{display:block;}
+      .mobile-nav-drawer{display:block;}
+      .content-section{padding:40px 24px;}
+      .contact-grid{grid-template-columns:1fr;}
+      .form-row{grid-template-columns:1fr;}
+      .sticky-mobile{display:grid;}
+      body{padding-bottom:56px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- RETOUR TOCQUEVILLE -->
+  <div class="back-bar">
+    <a href="index.html" class="back-link">&#8592; Cours Tocqueville</a>
+    <div class="back-bar-right">
+      <a href="index.html">Accueil</a>
+      <a href="orientation-conseil.html">Orientation</a>
+      <a href="#">Master &amp; R&#233;orientation</a>
+    </div>
+  </div>
+
+  <!-- PRODUCT HEADER -->
+  <header class="product-header">
+    <div class="product-header-inner">
+      <div>
+        <a href="index.html" class="product-logo-link">
+          <img src="logo-ct.png" alt="Cours Tocqueville" class="product-logo" />
+        </a>
+        <h1 class="product-title">Master &amp; <em>R&#233;orientation</em></h1>
+        <p class="product-subtitle">
+          Choisir son Master, int&#233;grer une grande &#233;cole en admission parall&#232;le, ou se r&#233;orienter apr&#232;s un premier cycle &#8212; un accompagnement sur mesure, de la d&#233;finition du projet jusqu&#8217;&#224; l&#8217;admission.
+        </p>
+      </div>
+      <div class="product-header-cta">
+        <a href="tel:0142305011" class="btn-header-cta">&#128222; 01 42 30 50 11 &#8212; Nous contacter</a>
+        <a href="#form" class="btn-header-cta btn-header-outline">&#9993; Nous &#233;crire</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU BUTTON -->
+  <div class="mobile-menu-bar">
+    <button class="mobile-menu-btn" id="mnd-btn" onclick="toggleMobileNav()">
+      <span class="mobile-menu-btn-left">
+        <span class="mobile-menu-btn-icon">&#8801;</span>
+        Menu &#8212; Master &amp; R&#233;orientation
+      </span>
+      <span class="mmb-chevron">&#9660;</span>
+    </button>
+  </div>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div class="mobile-nav-drawer" id="mnd">
+    <div class="mnd-header">
+      <span class="mnd-header-title">Navigation &#8212; Master &amp; R&#233;orientation</span>
+      <button class="mnd-close" onclick="toggleMobileNav()">&#10005; Fermer</button>
+    </div>
+    <div class="mnd-body">
+      <div class="mnd-section">
+        <span class="mnd-section-title">Le projet</span>
+        <a href="#introduction" class="mnd-link" onclick="toggleMobileNav()">Pourquoi nous consulter</a>
+        <a href="#reorientation" class="mnd-link" onclick="toggleMobileNav()">La r&#233;orientation</a>
+        <a href="#licence3" class="mnd-link" onclick="toggleMobileNav()">La 3e ann&#233;e de licence</a>
+      </div>
+      <div class="mnd-section">
+        <span class="mnd-section-title">Les voies</span>
+        <a href="#admissions-paralleles" class="mnd-link" onclick="toggleMobileNav()">Admissions parall&#232;les</a>
+        <a href="#accompagnement" class="mnd-link" onclick="toggleMobileNav()">Notre accompagnement</a>
+      </div>
+      <div class="mnd-section">
+        <span class="mnd-section-title">Informations pratiques</span>
+        <a href="#contact" class="mnd-link" onclick="toggleMobileNav()">Nous contacter</a>
+      </div>
+      <div class="mnd-cta-box">
+        <p>Un projet de Master ou de r&#233;orientation ? Parlons-en &#8212; nous vous rappelons sous 24h.</p>
+        <a href="#contact" class="mnd-cta-btn" onclick="toggleMobileNav()">Prendre contact</a>
+        <a href="tel:0142305011" class="mnd-tel">01 42 30 50 11</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="page-body">
+
+    <!-- LEFT NAV -->
+    <aside class="left-nav">
+      <div class="left-nav-section">
+        <span class="left-nav-title">Le projet</span>
+        <a href="#introduction" class="active">Pourquoi nous consulter</a>
+        <a href="#reorientation">La r&#233;orientation</a>
+        <a href="#licence3">La 3e ann&#233;e de licence</a>
+      </div>
+      <div class="left-nav-section">
+        <span class="left-nav-title">Les voies</span>
+        <a href="#admissions-paralleles">Admissions parall&#232;les</a>
+        <a href="#accompagnement">Notre accompagnement</a>
+      </div>
+      <div class="left-nav-section">
+        <span class="left-nav-title">Informations pratiques</span>
+        <a href="#contact">Nous contacter</a>
+      </div>
+      <div class="left-nav-cta">
+        <p>Un projet de Master ou de r&#233;orientation&#160;? Parlons-en &#8212; nous vous rappelons sous 24h.</p>
+        <a href="#contact">Prendre contact</a>
+        <a href="tel:0142305011" class="left-nav-tel">01 42 30 50 11</a>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+      <section class="content-section fi" id="introduction">
+        <div class="section-label"><div class="pipe"></div><span>Master &amp; R&#233;orientation</span></div>
+        <h2>Un moment charni&#232;re, <em>une d&#233;cision strat&#233;gique.</em></h2>
+        <p>La fin du premier cycle universitaire est un moment charni&#232;re. Apr&#232;s deux ou trois ans d&#8217;&#233;tudes sup&#233;rieures, la question de la suite se pose avec une acuit&#233; nouvelle &#8212; et souvent une pression que les &#233;tudiants n&#8217;avaient pas anticip&#233;e. Choisir un Master, envisager une admission parall&#232;le en grande &#233;cole, ou se r&#233;orienter vers une voie diff&#233;rente&#160;: autant de d&#233;cisions qui engagent l&#8217;avenir et m&#233;ritent d&#8217;&#234;tre prises avec m&#233;thode.</p>
+      </section>
+
+      <section class="content-section fi" id="reorientation">
+        <div class="section-label"><div class="pipe"></div><span>La r&#233;orientation</span></div>
+        <h2>La r&#233;orientation n&#8217;est <em>pas un &#233;chec.</em></h2>
+        <p>Une r&#233;orientation en cours d&#8217;&#233;tudes est au contraire la preuve d&#8217;une maturation, d&#8217;une meilleure connaissance de soi et de ses aspirations. Les recruteurs le savent &#8212; un parcours qui t&#233;moigne d&#8217;une vraie r&#233;flexion et d&#8217;une capacit&#233; &#224; se remettre en question peut &#234;tre un atout r&#233;el.</p>
+        <p>Notre accompagnement commence toujours par un bilan de ce qui a &#233;t&#233; entrepris&#160;: quels choix avez-vous faits, pour quelles raisons, qu&#8217;en avez-vous tir&#233;&#160;? Ce travail de fond est indispensable pour construire un nouveau projet solide et convaincant.</p>
+        <div class="conseil-box">
+          <p><strong>Notre point de d&#233;part&#160;:</strong> comprendre votre parcours avant de vous proposer une direction. Pas de solution standard &#8212; un diagnostic r&#233;el, puis un plan d&#8217;action adapt&#233; &#224; votre profil.</p>
+        </div>
+      </section>
+
+      <section class="content-section fi" id="licence3">
+        <div class="section-label"><div class="pipe"></div><span>La 3e ann&#233;e de licence</span></div>
+        <h2>Une ann&#233;e d&#233;cisive, <em>&#224; ne pas sous-estimer.</em></h2>
+        <p>La troisi&#232;me ann&#233;e de licence est exigeante sur le plan acad&#233;mique &#8212; les notes obtenues tout au long de cette ann&#233;e sont d&#233;terminantes pour l&#8217;admission en Master. C&#8217;est aussi l&#8217;ann&#233;e o&#249; il faut construire sa strat&#233;gie de candidature, r&#233;diger des dossiers complexes et respecter des d&#233;lais souvent tr&#232;s serr&#233;s. Certaines proc&#233;dures ouvrent d&#232;s janvier ou f&#233;vrier &#8212; ne pas les anticiper, c&#8217;est les rater.</p>
+        <p>Il n&#8217;existe pas de proc&#233;dure centralis&#233;e pour les admissions en Master. Chaque &#233;cole ou universit&#233; a son propre calendrier, ses propres exigences, ses propres crit&#232;res de s&#233;lection. Cette dispersion est une source de complexit&#233; r&#233;elle pour des &#233;tudiants qui doivent simultan&#233;ment maintenir leurs r&#233;sultats acad&#233;miques et g&#233;rer plusieurs candidatures en parall&#232;le.</p>
+        <div class="conseil-box">
+          <p><strong>&#192; retenir&#160;:</strong> certaines proc&#233;dures d&#8217;admission ouvrent d&#232;s janvier ou f&#233;vrier de l&#8217;ann&#233;e de L3. Nous vous aidons &#224; cartographier les calendriers et &#224; ne manquer aucune &#233;ch&#233;ance.</p>
+        </div>
+      </section>
+
+      <section class="content-section fi" id="admissions-paralleles">
+        <div class="section-label"><div class="pipe"></div><span>Admissions parall&#232;les</span></div>
+        <h2>Une opportunit&#233; <em>m&#233;connue.</em></h2>
+        <p>Int&#233;grer une grande &#233;cole de commerce apr&#232;s une licence est une opportunit&#233; que beaucoup d&#8217;&#233;tudiants ignorent. HEC, ESSEC, ESCP, EM Lyon et d&#8217;autres proposent des voies d&#8217;admission parall&#232;les qui permettent d&#8217;obtenir un dipl&#244;me de grande &#233;cole avec une formation universitaire en base &#8212; une combinaison que les recruteurs valorisent de plus en plus.</p>
+        <p>Ces proc&#233;dures requi&#232;rent g&#233;n&#233;ralement un dossier solide, la pr&#233;paration du TAGE MAGE ou du GMAT, et souvent un entretien de motivation.</p>
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <h4>Dossier acad&#233;mique solide</h4>
+              <p>Les grandes &#233;coles examinent la coh&#233;rence du parcours, la qualit&#233; des notes en L3, et les exp&#233;riences extra-acad&#233;miques.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <h4>TAGE MAGE ou GMAT</h4>
+              <p>Chaque &#233;cole a ses propres exigences en mati&#232;re de tests standardis&#233;s. Nous pr&#233;parons nos &#233;l&#232;ves &#224; ces &#233;preuves dans le cadre de l&#8217;accompagnement global.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <h4>Entretien de motivation</h4>
+              <p>El&#233;ment souvent d&#233;cisif, l&#8217;entretien se pr&#233;pare en profondeur&#160;: connaissance de l&#8217;&#233;cole, clart&#233; du projet, capacit&#233; &#224; valoriser son parcours.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section fi" id="accompagnement">
+        <div class="section-label"><div class="pipe"></div><span>Notre accompagnement</span></div>
+        <h2>De la d&#233;finition du projet <em>jusqu&#8217;&#224; l&#8217;admission.</em></h2>
+        <p>Nous intervenons sur l&#8217;ensemble du processus&#160;:</p>
+        <ul>
+          <li>Bilan de parcours et construction du projet</li>
+          <li>Identification des Masters, Mast&#232;res sp&#233;cialis&#233;s et admissions parall&#232;les les mieux adapt&#233;s au profil</li>
+          <li>R&#233;daction des lettres de motivation et du CV</li>
+          <li>Pr&#233;paration aux tests requis&#160;: TAGE MAGE, GMAT, GRE</li>
+          <li>Pr&#233;paration aux entretiens de motivation</li>
+          <li>Suivi jusqu&#8217;&#224; l&#8217;admission</li>
+        </ul>
+        <div class="conseil-box">
+          <p><strong>Chaque &#233;tudiant a un parcours, un projet et des contraintes diff&#233;rentes.</strong> Notre accompagnement est construit sur mesure &#8212; pas sur la base d&#8217;un programme standard.</p>
+        </div>
+        <p style="margin-top:20px;font-style:italic;color:var(--gris);">Tarifs et disponibilit&#233;s&#160;: nous consulter.</p>
+      </section>
+
+      <section class="content-section fi" id="contact">
+        <div class="section-label"><div class="pipe"></div><span>Nous contacter</span></div>
+        <h2>Parlons de votre <em>projet.</em></h2>
+        <div class="contact-grid">
+          <div class="contact-form-box" id="form">
+            <p class="contact-intro">D&#233;crivez-nous votre situation et nous vous rappelons sous 24h pour construire ensemble la solution la plus adapt&#233;e &#224; votre profil.</p>
+            <div class="form-row">
+              <div class="fg"><label>Pr&#233;nom</label><input type="text" placeholder="Jean" /></div>
+              <div class="fg"><label>Nom</label><input type="text" placeholder="Dupont" /></div>
+            </div>
+            <div class="fg"><label>Email</label><input type="email" placeholder="jean.dupont@email.com" /></div>
+            <div class="fg"><label>T&#233;l&#233;phone</label><input type="tel" placeholder="06 00 00 00 00" /></div>
+            <div class="fg">
+              <label>Votre situation</label>
+              <select>
+                <option>&#8212; Choisir &#8212;</option>
+                <option>En L3, je cherche un Master</option>
+                <option>Je vise une admission parall&#232;le en grande &#233;cole</option>
+                <option>Je souhaite me r&#233;orienter apr&#232;s un L1 / L2</option>
+                <option>Je sors de pr&#233;pa et cherche une voie alternative</option>
+                <option>Autre situation</option>
+              </select>
+            </div>
+            <div class="fg"><label>Votre projet &amp; objectifs</label><textarea placeholder="Parcours actuel, formations vis&#233;es, d&#233;lais, contraintes&#8230;"></textarea></div>
+            <button class="btn-submit">Envoyer ma demande</button>
+            <p class="form-legal">Vos donn&#233;es ne sont utilis&#233;es qu&#8217;&#224; des fins de contact et ne sont jamais c&#233;d&#233;es &#224; des tiers.</p>
+          </div>
+          <div class="contact-aside">
+            <div class="contact-tel-block">
+              <div class="contact-tel-icon">&#128222;</div>
+              <div>
+                <span class="contact-tel-label">Appel direct</span>
+                <a href="tel:0142305011" class="contact-tel-num">01 42 30 50 11</a>
+              </div>
+            </div>
+            <div class="contact-addr">
+              <strong>Cours Tocqueville</strong>
+              5, rue Vital &#183; 75016 Paris<br />
+              M&#233;tro Passy (L6) &#183; Trocad&#233;ro (L6/L9)<br />
+              RER C&#160;: Boulainvilliers
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- STICKY MOBILE -->
+  <div class="sticky-mobile">
+    <a href="tel:0142305011" class="sm-call">&#128222; 01 42 30 50 11</a>
+    <a href="#form" class="sm-form">&#9993; Nous &#233;crire</a>
+  </div>
+
+  <script>
+    function toggleMobileNav() {
+      const drawer = document.getElementById("mnd");
+      const btn = document.getElementById("mnd-btn");
+      const isOpen = drawer.classList.contains("open");
+      drawer.classList.toggle("open");
+      btn.classList.toggle("open");
+      document.body.style.overflow = isOpen ? "" : "hidden";
+      document.querySelectorAll(".sticky-mobile").forEach(el => {
+        el.style.display = isOpen ? "" : "none";
+      });
+    }
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("v"); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll(".fi").forEach(el => obs.observe(el));
+    const sections = document.querySelectorAll(".content-section[id]");
+    const navLinks = document.querySelectorAll(".left-nav a");
+    const scrollObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => {
+            a.classList.remove("active");
+            if (a.getAttribute("href") === "#" + e.target.id) a.classList.add("active");
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: "-10% 0px -60% 0px" });
+    sections.forEach(s => scrollObs.observe(s));
+  </script>
+</body>
+</html>
