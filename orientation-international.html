@@ -65,86 +65,19 @@
     .mnd-cta-btn{display:block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.75rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;padding:11px 16px;text-align:center;margin-bottom:10px;}
     .mnd-tel{display:block;font-family:var(--f-head);font-size:1rem;color:rgba(255,255,255,0.6);text-decoration:none;text-align:center;}
 
-    .page-body{display:grid;grid-template-columns:var(--left-nav-w) 1fr;max-width:1280px;margin:0 auto;min-height:calc(100vh - 40px - 164px);}
-
-    .left-nav{position:sticky;top:0;height:100vh;overflow-y:hidden;background:var(--anthracite);padding:40px 0;}
-    .left-nav-section{margin-bottom:24px;}
-    .left-nav-title{display:block;font-family:var(--f-body);font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:0 28px;margin-bottom:8px;}
-    .left-nav a{display:block;font-family:var(--f-body);font-size:0.88rem;font-weight:300;color:rgba(255,255,255,0.55);text-decoration:none;padding:9px 28px;border-left:3px solid transparent;transition:all var(--t);}
-    .left-nav a:hover{color:var(--blanc);background:rgba(255,255,255,0.03);}
-    .left-nav a.active{color:var(--blanc);border-left-color:var(--bx);background:rgba(255,255,255,0.04);}
-    .left-nav a.sub{font-size:0.82rem;padding:7px 28px 7px 36px;color:rgba(255,255,255,0.4);}
-    .left-nav a.sub:hover,.left-nav a.sub.active{color:rgba(255,255,255,0.85);}
-    .left-nav-sep{height:1px;background:rgba(255,255,255,0.07);margin:16px 28px;}
-    .left-nav-cta{margin:24px 20px 0;background:var(--bx);padding:20px;}
-    .left-nav-cta p{font-family:var(--f-body);font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.6;margin-bottom:14px;}
-    .left-nav-cta a{display:block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.72rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;padding:10px 14px;text-align:center;margin-bottom:10px;border:none;transition:background var(--t);}
-    .left-nav-cta a:hover{background:var(--ivoire);border-left:none;}
-    .left-nav-tel{display:block;font-family:var(--f-head);font-size:1rem;color:rgba(255,255,255,0.55)!important;text-decoration:none;text-align:center;padding:0!important;border:none!important;background:none!important;}
-
-    .content{padding:0;}
-    .content-section{padding:56px 64px;border-bottom:1px solid var(--gris-cl);}
-    .content-section:last-child{border-bottom:none;}
-    .section-label{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
-    .section-label .pipe{width:3px;height:18px;background:var(--bx);flex-shrink:0;}
-    .section-label span{font-family:var(--f-body);font-size:0.65rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bx);}
-    .content-section h2{font-family:var(--f-head);font-size:clamp(1.8rem,2.4vw,2.5rem);font-weight:300;line-height:1.15;color:var(--anthracite);margin-bottom:24px;}
-    .content-section h2 em{font-style:italic;font-weight:400;color:var(--bx);}
-    .content-section p{font-family:var(--f-body);font-size:0.9rem;font-weight:300;color:var(--gris);line-height:1.85;margin-bottom:14px;max-width:680px;}
-    .content-section p strong{font-weight:500;color:var(--anthracite);}
-    .content-section p a{color:var(--bx);text-decoration:none;border-bottom:1px solid rgba(107,26,42,0.25);transition:border-color var(--t);}
-    .content-section p a:hover{border-bottom-color:var(--bx);}
-
-    /* Destination cards */
-    .dest-block{margin-bottom:48px;}
-    .dest-block:last-of-type{margin-bottom:0;}
-    .dest-header{display:flex;align-items:baseline;gap:16px;margin-bottom:16px;}
-    .dest-flag{font-size:1.5rem;line-height:1;}
-    .dest-title{font-family:var(--f-head);font-size:1.5rem;font-weight:400;color:var(--anthracite);}
-    .dest-title em{font-style:italic;color:var(--bx);}
-    .dest-body{font-family:var(--f-body);font-size:0.9rem;font-weight:300;color:var(--gris);line-height:1.85;max-width:680px;margin-bottom:10px;}
-    .dest-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-body);font-size:0.78rem;font-weight:400;color:var(--bx);text-decoration:none;border-bottom:1px solid rgba(107,26,42,0.3);padding-bottom:1px;transition:border-color var(--t);}
-    .dest-link:hover{border-bottom-color:var(--bx);}
-    .dest-sep{height:1px;background:var(--gris-cl);margin:36px 0;max-width:680px;}
-
-    .conseil-box{background:var(--ivoire-dk);border-left:3px solid var(--bx);padding:18px 22px;margin:24px 0;max-width:680px;}
-    .conseil-box p{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:var(--anthracite);line-height:1.7;margin:0;}
-    .conseil-box p strong{font-weight:500;}
-
-    .contact-grid{display:grid;grid-template-columns:1fr 280px;gap:48px;margin-top:8px;}
-    .contact-intro{font-family:var(--f-body);font-size:0.85rem;font-weight:300;color:var(--gris);line-height:1.7;margin-bottom:24px;}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-    .fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
-    .fg label{font-family:var(--f-body);font-size:0.72rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--anthracite);}
-    .fg input,.fg select,.fg textarea{font-family:var(--f-body);font-size:0.9rem;font-weight:300;border:1px solid var(--gris-cl);background:var(--blanc);padding:10px 14px;color:var(--anthracite);transition:border-color var(--t);outline:none;}
-    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--bx);}
-    .fg textarea{min-height:110px;resize:vertical;}
-    .btn-submit{background:var(--bx);color:var(--blanc);font-family:var(--f-body);font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;padding:14px 28px;transition:background var(--t);width:100%;}
-    .btn-submit:hover{background:var(--bx-lt);}
-    .form-legal{font-family:var(--f-body);font-size:0.72rem;font-weight:300;color:var(--gris);line-height:1.6;margin-top:12px;}
-    .contact-aside{padding-top:8px;}
-    .contact-tel-block{display:flex;gap:16px;align-items:flex-start;background:var(--ivoire-dk);padding:20px;margin-bottom:20px;}
-    .contact-tel-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
-    .contact-tel-label{display:block;font-family:var(--f-body);font-size:0.65rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gris);margin-bottom:4px;}
-    .contact-tel-num{display:block;font-family:var(--f-head);font-size:1.3rem;font-weight:300;color:var(--bx);text-decoration:none;border:none!important;}
-    .contact-addr{font-family:var(--f-body);font-size:0.82rem;font-weight:300;color:var(--gris);line-height:1.8;}
-    .contact-addr strong{display:block;font-weight:500;color:var(--anthracite);margin-bottom:4px;}
-
-    .fi{opacity:0;transform:translateY(18px);transition:opacity 0.55s ease,transform 0.55s ease;}
-    .fi.v{opacity:1;transform:translateY(0);}
-
-    .sticky-mobile{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;grid-template-columns:1fr 1fr;}
-    .sm-call{background:var(--anthracite);color:var(--blanc);font-family:var(--f-body);font-size:0.8rem;font-weight:400;text-decoration:none;padding:16px;text-align:center;letter-spacing:0.04em;}
-    .sm-form{background:var(--bx);color:var(--blanc);font-family:var(--f-body);font-size:0.8rem;font-weight:400;text-decoration:none;padding:16px;text-align:center;letter-spacing:0.04em;}
-
-    @media(max-width:960px){
-      .back-bar{padding:0 20px;}
-      .back-bar-right{display:none;}
-      .product-header{padding:36px 20px 32px;}
-      .product-header-inner{grid-template-columns:1fr;gap:24px;}
-      .product-header-cta{flex-direction:row;flex-wrap:wrap;}
-      .page-body{grid-template-columns:1fr;}
-      .left-nav{display:none;}
+        .page-body{display:grid;grid-template-columns:260px 1fr;max-width:1280px;margin:0 auto;align-items:start;}
+    .left-nav{position:sticky;top:24px;padding:40px 32px 40px 0;}
+    .left-nav-section{margin-bottom:28px;}
+    .left-nav-title{font-family:var(--f-body);font-size:0.6rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--bx);padding-bottom:8px;border-bottom:1px solid var(--gris-cl);margin-bottom:8px;display:block;}
+    .left-nav a{display:block;font-family:var(--f-body);font-size:0.82rem;font-weight:400;color:var(--gris);text-decoration:none;padding:6px 0 6px 12px;border-left:2px solid transparent;transition:color var(--t),border-color var(--t);line-height:1.4;}
+    .left-nav a:hover,.left-nav a.active{color:var(--bx);border-left-color:var(--bx);}
+    .left-nav a.sub{font-size:0.76rem;padding:4px 0 4px 20px;}
+    .left-nav-cta{margin-top:32px;background:var(--bx);padding:20px;}
+    .left-nav-cta p{font-family:var(--f-body);font-size:0.78rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:14px;}
+    .left-nav-cta a{display:block;background:var(--blanc);color:var(--bx);font-family:var(--f-body);font-size:0.7rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:10px 16px;text-align:center;transition:background var(--t);border-left:none!important;}
+    .left-nav-cta a:hover{background:var(--ivoire-dk);}
+    .left-nav-tel{margin-top:10px;font-family:var(--f-head);font-size:1.1rem;font-weight:400;color:var(--blanc)!important;text-align:center;display:block;text-decoration:none;padding:0!important;border-left:none!important;}
+    @media(max-width:960px){.page-body{grid-template-columns:1fr;}.left-nav{display:none;}}
       .mobile-menu-bar{display:block;}
       .mobile-nav-drawer{display:block;}
       .content-section{padding:40px 24px;}
@@ -229,9 +162,17 @@
 
   <div class="page-body">
 
-    <aside class="left-nav">
+        <aside class="left-nav">
       <div class="left-nav-section">
-        <span class="left-nav-title">Études à l'étranger</span>
+        <span class="left-nav-title">Orientation</span>
+        <a href="orientation-conseil.html">Tocqueville Orientation</a>
+      </div>
+      <div class="left-nav-section">
+        <span class="left-nav-title">Admissions France</span>
+        <a href="orientation-master.html">Master &amp; Réorientation</a>
+      </div>
+      <div class="left-nav-section">
+        <span class="left-nav-title">Admissions Internationales</span>
         <a href="orientation-usa.html">États-Unis</a>
         <a href="orientation-international.html" class="active">Autres pays</a>
         <a href="#bocconi" class="sub">Italie — Bocconi</a>
@@ -240,16 +181,6 @@
         <a href="#suisse" class="sub">Suisse</a>
         <a href="#europe-nord" class="sub">Europe du Nord</a>
         <a href="#israel" class="sub">Israël</a>
-      </div>
-      <div class="left-nav-sep"></div>
-      <div class="left-nav-section">
-        <span class="left-nav-title">Admissions France</span>
-        <a href="orientation-master.html">Master & Réorientation</a>
-      </div>
-      <div class="left-nav-sep"></div>
-      <div class="left-nav-section">
-        <span class="left-nav-title">Orientation</span>
-        <a href="orientation-conseil.html">Tocqueville Orientation</a>
       </div>
       <div class="left-nav-cta">
         <p>Un projet d'études à l'étranger ? Nous vous rappelons sous 24h.</p>
